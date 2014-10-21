@@ -5,7 +5,7 @@ Projeto de GP
 
 | API's                 | Funciona? | Vantagens | Desvantagens | URL                 |
 |-----------------------|-----------|-----------|--------------|---------------------|
-| vget / wget           | Não.      |           |              |                     |
+| ~~vget / wget~~       | Não.      |           |              |                     |
 | JDownloader           |           |           |              |                     |
 | youtube-dl python     |           |           |              |                     |
 | JavaYoutubeDownloader | Não.      |           |              |                     |
