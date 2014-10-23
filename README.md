@@ -15,15 +15,15 @@ Projeto de GP
 | 2 | PAFY                  | Sim.  | https://github.com/np1/pafy                                   | Python     |
 
 1. youtube-dl
-  - biblioteca em python
-  - pode executar atravês da consola depois de instalada
+  - Biblioteca em python
+  - Pode executar atravês da consola depois de instalada
   - Formatos de video:
     * mp4, 3gp, flv, webm
   - Formatos de audio:
     * m4a, webm
 
 2. PAFY
-  - biblioteca em python
-  - poucos formatos de video comparativamente com o youtube-dl
+  - Biblioteca em python
+  - Poucos formatos de video comparativamente com o youtube-dl
   - Formatos de video:
     * mp4, 3gp, flv, webm
