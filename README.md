@@ -21,9 +21,12 @@ Projeto de GP
     * mp4, 3gp, flv, webm
   - Formatos de audio:
     * m4a, webm
+  - Corre em python 2 e em python 3
 
 2. PAFY
   - Biblioteca em python
-  - Poucos formatos de video comparativamente com o youtube-dl
   - Formatos de video:
-    * mp4, 3gp, flv, webm
+    * mp4, 3gp, flv, webm, m4v
+  - Formatos de audio:
+    * m4a, ogg
+  - Corre em python 3 (corre em python 2?)
