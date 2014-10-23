@@ -12,7 +12,7 @@ Projeto de GP
 |   | get-flash-videos      |           | https://code.google.com/p/get-flash-videos/                   |
 |   | KeepVid Javascript    |           | http://keepvid.com/                                           |
 |   | YTD2                  | Não.      | http://ytd2.sourceforge.net/                                  |
-| 2 | PAFY                  | Sim.      |                                                               |
+| 2 | PAFY                  | Sim.      | https://github.com/np1/pafy                                   |
 
 1. youtube-dl
   - biblioteca em python
