@@ -25,5 +25,5 @@ Projeto de GP
 2. PAFY
   - biblioteca em python
   - poucos formatos de video comparativamente com o youtube-dl
-  - Formatos de video:
+  - Formatos de video: 
     * mp4, 3gp, flv, webm
