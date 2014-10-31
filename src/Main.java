@@ -28,17 +28,27 @@ public class Main {
 		String url2 = new String("http://youtu.be/jJT0Suanqhg?t=37s");
 		String url3 = new String("http://www.youtube.com/watch?v=Iv-Xmv2yjjQ");
 		String url4 = new String("http://www.youtube.com/watch?v=jK88pRSakms&list=RDjK88pRSakms#t=168");
-//		String url2 = new String("https://www.youtube.com/watch?v=jJT0Suanqhg");
+		String url5 = new String("http://youtu.be/j1V33b2ZEIo?list=RDj1V33b2ZEIo");
+		String url6 = new String("https://www.youtube.com/watch?v=ujQ0WOUD3H0&index=5&list=RDj1V33b2ZEIo");
+		String url7 = new String("https://www.youtube.com/watch?list=RDj1V33b2ZEIo&v=Ug_OM0WzVmA&index=8");
+		String url8 = new String("https://www.youtube.com/watch?v=zQqAxB5DjgQ");
+		String url9 = new String("http://www.youtube.com/watch?v=bgpU6nWUgGY");
 
-		doWork(url1);
-		doWork(url2);
-		doWork(url3);
-		doWork(url4);
+
+//		doWork(url1);
+//		doWork(url2);
+//		doWork(url3);
+//		doWork(url4);
 //		doWork(url5);
+//		doWork(url6);
+//		doWork(url7);
+//		doWork(url8);
+		doWork(url9);
 	}
 	
 	public static void doWork(String youtubeUrl)
 	{
+		debug(youtubeUrl);
 		String id = new String();
 //		Verifica se o URL e valido
 		if (youtubeUrl.startsWith("https://www.youtube.com/watch?v=") 
