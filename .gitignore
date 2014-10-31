@@ -1,7 +1,7 @@
 # Created by https://www.gitignore.io
 
-.mp4
-.part
+*.mp4
+*.part
 
 ### Java ###
 *.class
