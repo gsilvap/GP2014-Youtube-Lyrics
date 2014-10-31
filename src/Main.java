@@ -1,20 +1,51 @@
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 
-import readAndValidateData.Read;
 
 public class Main {
+	
+	public static boolean DEBUG = true;
 
 	public static void main(String args[]) {
 
 		// String youtubeUrl = Read.readString("Introduza o link do YouTube: ");
-		String youtubeUrl = new String("https://www.youtube.com/watch?v=Iv-Xmv2yjjQ");
+//		String youtubeUrl = new String("https://www.youtube.com/watch?v=Iv-sXmv2yjjQ");
+		String youtubeUrl = new String("http://www.youtube.com/watch?v=jK88pRSakms&list=PL7FDC95FD05B2EDAF");
 
-		String format = new String("");
-//		downloadYoutubeVideo(youtubeUrl, format);
+//		Verifica se o URL e valido
+		if (youtubeUrl.startsWith("https://www.youtube.com/watch?v=") || 
+			youtubeUrl.startsWith("http://www.youtube.com/watch?v=") || 
+			youtubeUrl.startsWith("www.youtube.com/watch?v=") || 
+			youtubeUrl.startsWith("https://www.youtube.com/v/") ||
+			youtubeUrl.startsWith("http://www.youtube.com/v/") ||
+			youtubeUrl.startsWith("www.youtube.com/v/"))
+		{
+//			Verifica se e uma lista e retira so o id
+			if (youtubeUrl.contains("&list="))
+			{
+				System.out.println("Erro: O link e de uma lista, so vai ser transferido o video atual!");
+				youtubeUrl = new String(youtubeUrl.substring(0, youtubeUrl.indexOf("&list=")));
+			}
+			ArrayList<String> result = new ArrayList<String>();
+			result = downloadYoutubeVideo(youtubeUrl, "");
+			
+//			Se o comando não for bem executado
+			if (result.size()-1 > 0 && result.get(result.size()-1).compareTo("1") == 0)
+			{
+				System.out.println("URL invalido!");
+			}
+			else if (result.size()-2 > 0 && result.get(result.size()-2).contains("has already been downloaded"))
+			{
+				System.out.println("Ja foi feito o download");
+			}
+//			Se o comando for bem executado
+			else {
+				System.out.println("Transferencia executada com sucesso.");
+			}
+		}
+
+//		String format = new String("");
 //		getAllFormats(youtubeUrl);
 	}
 
@@ -27,7 +58,8 @@ public class Main {
 
 	public static ArrayList<String> runCmd(String cmd) {
 		ArrayList<String> result = new ArrayList<String>();
-		System.out.println("cmd: " + cmd);
+		debug("[cmd] " + cmd);
+//		if (DEBUG) System.out.println("[DEBUG] [cmd] " + cmd);
 		int exitValue = 0;
 		String s;
 		Process p;
@@ -35,13 +67,14 @@ public class Main {
 			p = Runtime.getRuntime().exec(cmd);
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = br.readLine()) != null) {
-
-				System.out.println(s);
+				debug(s);
+//				if (DEBUG) System.out.println("[DEBUG] "+s);
 				result.add(s);
 			}
 			p.waitFor();
 			exitValue = p.exitValue();
-			System.out.println("exit: " + exitValue);
+			debug("[exit] " + exitValue);
+//			if (DEBUG) System.out.println("[DEBUG] [exit] " + exitValue);
 			p.destroy();
 			result.add(Integer.toString(exitValue));
 		} catch (Exception e) {
@@ -52,5 +85,10 @@ public class Main {
 
 	public static ArrayList<String> getAllFormats(String youtubeUrl) {
 		return runCmd(("youtube-dl " + "-F " + youtubeUrl));
+	}
+	
+	public static void debug(String msg)
+	{
+		if (DEBUG) System.out.println("[DEBUG] " + msg);
 	}
 }
