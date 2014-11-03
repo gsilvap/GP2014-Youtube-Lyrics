@@ -145,7 +145,7 @@ public class Video {
 		state = State.INVALID;
 	}
 	public void downloadFilename() {
-		ArrayList<String> result = Utilities.runCmd("youtube-dl --get-filename -o \"%(title)s-%(id)s.%(ext)s\" " + id, id);		
+		ArrayList<String> result = Utilities.runCmd("youtube-dl --get-filename -o \"%(title)s-%(id)s.%(ext)s\" " + id, id);
 		if (result.size()-1 >= 0 && result.get(result.size()-1).compareTo("0") == 0)
 		{
 			filename = result.get(0);
