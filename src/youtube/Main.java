@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import readAndValidateData.TextFile;
 
 public class Main {	
-		
+	
+	private final int THREADS = 5;
+	private int threadControl;
+	
 	public static void main(String args[]) {
 		Main program = new Main();
 		program.run();
 	}
 	
 	private void run() {
-//		Read regex and pattern from file
+		threadControl = 0;
 		TextFile regexFile = new TextFile();
 		String regex = "";
 		String pattern = "";
@@ -22,32 +25,45 @@ public class Main {
 			pattern = regexFile.readLine();
 			regexFile.closeRead();
 		} catch (IOException e) {
-//			TODO Tratar excepção
+			// TODO Auto-generated catch block
 //			e.printStackTrace();
-			regex = "";
-			pattern = "";
 		} 
 		
+//		System.out.println("'"+regex+"'");
+//		System.out.println(pattern);
 		
 //		System.exit(0);
 		Utilities.deleteFilesByExtension(".part");
 		ArrayList<Video> links = populate();
 		
+		
 		for (Video video : links) {
 			video.validate(regex, pattern);
 			if (video.isValid())
-			{
-				video.downloadTitle();
-				video.downloadFilename();
-				video.downloadVideo();
+			{	
+				// Download de varios links na máximo 5 em simultaneo
+				while(threadControl>=THREADS){
+					System.out.println("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
+					this.timer(5);
+				}
+				new Thread(() -> {
+					threadControl++;
+					System.out.println("[DOWNLOADING] Link no. " + links.indexOf(video));					
+					video.downloadTitle();
+					video.downloadFilename();
+					video.downloadVideo();					  
+					System.out.println("[TERMINATED] Link no. " + links.indexOf(video));
+
+					System.out.println("[TITLE] "+video.getTitle());
+					System.out.println("[FILENAME] "+video.getFilename());					
+					threadControl--;
+				}).start();
+
 			}
 			else
 				System.out.println("Video invalido");
 			
-//			System.out.println(video.getTitle());
-//			System.out.println(video.getState());
-//			System.out.println(video.getFilename());
-//			break;
+			System.out.println("[STATE] "+video.getState());
 		}
 	}
 	
@@ -89,4 +105,13 @@ public class Main {
 		
 		return links;
 	}
+	
+	private void timer(double seconds) {
+		try {
+			Thread.sleep((int) (1000 * seconds));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
