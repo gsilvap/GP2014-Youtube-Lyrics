@@ -113,11 +113,11 @@ public class Video {
 	}
 	
 	public ArrayList<String> downloadVideo() {
-		return Utilities.runCmd("youtube-dl " + url);
+		return Utilities.runCmd(id, "youtube-dl " + url);
 	}
 
 	public void downloadVideoByFormat(String format) {
-		ArrayList<String> result = Utilities.runCmd("youtube-dl " + "-f " + format + " " + url);
+		ArrayList<String> result = Utilities.runCmd(id, "youtube-dl " + "-f " + format + " " + url);
 		
 //		Verifica se o download ja foi feito anteriormente
 		if (result.size()-2 > 0 && result.get(result.size()-2).contains("has already been downloaded"))
@@ -135,7 +135,7 @@ public class Video {
 	}
 
 	public void downloadTitle() {
-		ArrayList<String> result = Utilities.runCmd("youtube-dl --get-filename -o \"%(title)s\" " + id);		
+		ArrayList<String> result = Utilities.runCmd(id, "youtube-dl --get-filename -o \"%(title)s\" " + id);		
 		if (result.size()-1 >= 0 && result.get(result.size()-1).compareTo("0") == 0)
 		{
 			title = result.get(0);
@@ -145,7 +145,7 @@ public class Video {
 		state = State.INVALID;
 	}
 	public void downloadFilename() {
-		ArrayList<String> result = Utilities.runCmd("youtube-dl --get-filename -o \"%(title)s-%(id)s.%(ext)s\" " + id);		
+		ArrayList<String> result = Utilities.runCmd(id, "youtube-dl --get-filename -o \"%(title)s-%(id)s.%(ext)s\" " + id);		
 		if (result.size()-1 >= 0 && result.get(result.size()-1).compareTo("0") == 0)
 		{
 			filename = result.get(0);

@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Utilities {
-	public static ArrayList<String> runCmd(String cmd) {
+	public static ArrayList<String> runCmd(String cmd, String id) {
 		ArrayList<String> result = new ArrayList<String>();
-		debug("[cmd] " + cmd);
+		debug(id, "[cmd] " + cmd);
 		int exitValue = 0;
 		String s;
 		Process p;
@@ -16,12 +16,12 @@ public class Utilities {
 			p = Runtime.getRuntime().exec(cmd);
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = br.readLine()) != null) {
-				debug(s);
+				debug(id, s);
 				result.add(s);
 			}
 			p.waitFor();
 			exitValue = p.exitValue();
-			debug("[exit] " + exitValue);
+			debug(id, "[exit] " + exitValue);
 			p.destroy();
 			result.add(Integer.toString(exitValue));
 		} catch (Exception e) {
@@ -30,9 +30,9 @@ public class Utilities {
 		return result;
 	}
 	
-	public static void debug(String msg)
+	public static void debug(String tag, String msg)
 	{
-		System.out.println("[DEBUG] " + msg);
+		System.out.println("[DEBUG] ["+tag+"] " + msg);
 	}
 	
 	public static void deleteFilesByExtension(String extension) {

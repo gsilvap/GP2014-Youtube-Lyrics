@@ -12,6 +12,7 @@ public class Main {
 	}
 	
 	private void run() {
+//		Read regex and pattern from file
 		TextFile regexFile = new TextFile();
 		String regex = "";
 		String pattern = "";
@@ -21,12 +22,12 @@ public class Main {
 			pattern = regexFile.readLine();
 			regexFile.closeRead();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+//			TODO Tratar excepção
 //			e.printStackTrace();
+			regex = "";
+			pattern = "";
 		} 
 		
-//		System.out.println("'"+regex+"'");
-//		System.out.println(pattern);
 		
 //		System.exit(0);
 		Utilities.deleteFilesByExtension(".part");
@@ -43,9 +44,9 @@ public class Main {
 			else
 				System.out.println("Video invalido");
 			
-			System.out.println(video.getTitle());
-			System.out.println(video.getState());
-			System.out.println(video.getFilename());
+//			System.out.println(video.getTitle());
+//			System.out.println(video.getState());
+//			System.out.println(video.getFilename());
 //			break;
 		}
 	}
