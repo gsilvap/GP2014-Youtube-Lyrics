@@ -71,30 +71,33 @@ public class Video {
 	}
 
 
-	public void validate() {
-		String regex = "";
-//		TODO ler regex de ficheiro
-		regex = "(https?://)?"
-				+ "(www\\.)?"
-				+ "(youtu\\.be/|youtube\\.com/)?"
-				+ "("
+	public void validate(String regex, String pattern) {
+		if (regex.compareTo("") == 0)
+		{
+			regex = "(https?://)?"
+					+ "(www\\.)?"
+					+ "(youtu\\.be/|youtube\\.com/)?"
+					+ "("
 					+ "(.+/)?"
 					+ "(watch"
-						+ "(\\?v=|.+&v=)"
+					+ "(\\?v=|.+&v=)"
 					+ ")?"
 					+ "(v=)?"
-				+ ")"
-				+ "([\\w_-]{11})"
-				+ "(&.+)?"
-				+ "(\\?list=([\\w_-]{13}))?"
-				+ "(\\?t=[0-9]*s)?";
+					+ ")"
+					+ "([\\w_-]{11})"
+					+ "(&.+)?"
+					+ "(\\?list=([\\w_-]{13}))?"
+					+ "(\\?t=[0-9]*s)?";
+		}
+		if (pattern.compareTo("") == 0)
+		{
+			pattern = "(be/|v=|/v/|/watch/)([\\w_-]{11})";
+		}
 		
 		if (!url.matches(regex)){
 			System.out.println("[URL invalido] "+url);
 			
 		}
-//		TODO ler pattern de ficheiro
-		String pattern = "(be/|v=|/v/|/watch/)([\\w_-]{11})";
 	    Pattern compiledPattern = Pattern.compile(pattern);
 	    Matcher matcher = compiledPattern.matcher(url);
 

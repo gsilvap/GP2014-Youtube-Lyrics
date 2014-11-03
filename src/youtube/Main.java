@@ -1,18 +1,39 @@
 package youtube;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import readAndValidateData.TextFile;
+
 public class Main {	
+		
 	public static void main(String args[]) {
 		Main program = new Main();
 		program.run();
 	}
 	
 	private void run() {
+		TextFile regexFile = new TextFile();
+		String regex = "";
+		String pattern = "";
+		try {
+			regexFile.openTextFileToRead("regex");
+			regex = regexFile.readLine();
+			pattern = regexFile.readLine();
+			regexFile.closeRead();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+		} 
+		
+//		System.out.println("'"+regex+"'");
+//		System.out.println(pattern);
+		
+//		System.exit(0);
 		Utilities.deleteFilesByExtension(".part");
 		ArrayList<Video> links = populate();
 		
 		for (Video video : links) {
-			video.validate();
+			video.validate(regex, pattern);
 			if (video.isValid())
 			{
 				video.downloadTitle();
@@ -25,7 +46,7 @@ public class Main {
 			System.out.println(video.getTitle());
 			System.out.println(video.getState());
 			System.out.println(video.getFilename());
-			break;
+//			break;
 		}
 	}
 	
