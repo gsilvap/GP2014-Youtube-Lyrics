@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Video {
 	
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 	
 	public static enum State {
 		VALID, INVALID;

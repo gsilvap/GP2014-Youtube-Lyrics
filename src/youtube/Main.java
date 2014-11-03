@@ -7,6 +7,7 @@ import readAndValidateData.TextFile;
 public class Main {	
 	
 	private final int THREADS = 5;
+	
 	private int threadControl;
 	
 	public static void main(String args[]) {
@@ -16,6 +17,7 @@ public class Main {
 	
 	private void run() {
 		threadControl = 0;
+		
 		TextFile regexFile = new TextFile();
 		String regex = "";
 		String pattern = "";
@@ -34,6 +36,7 @@ public class Main {
 		
 //		System.exit(0);
 		Utilities.deleteFilesByExtension(".part");
+		Utilities.deleteFilesByExtension(".mp4");
 		ArrayList<Video> links = populate();
 		
 		
@@ -43,19 +46,17 @@ public class Main {
 			{	
 				// Download de varios links na máximo 5 em simultaneo
 				while(threadControl>=THREADS){
-					System.out.println("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
+					Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
 					this.timer(5);
 				}
 				new Thread(() -> {
 					threadControl++;
-					System.out.println("[DOWNLOADING] Link no. " + links.indexOf(video));					
-					video.downloadTitle();
 					video.downloadFilename();
-					video.downloadVideo();					  
-					System.out.println("[TERMINATED] Link no. " + links.indexOf(video));
-
-					System.out.println("[TITLE] "+video.getTitle());
-					System.out.println("[FILENAME] "+video.getFilename());					
+					video.downloadTitle();
+					Utilities.debug("[DOWNLOADING] ["+video.getId()+"] "+video.getTitle());
+					video.downloadVideo();		
+					Utilities.debug("[TERMINATED ] ["+video.getId()+"] "+video.getTitle());
+					
 					threadControl--;
 				}).start();
 
@@ -63,7 +64,7 @@ public class Main {
 			else
 				System.out.println("Video invalido");
 			
-			System.out.println("[STATE] "+video.getState());
+//			Utilities.debug("[STATE] ["+video.getId()+"] "+video.getState());
 		}
 	}
 	
