@@ -12,6 +12,7 @@ public class Main {
 	private ArrayList<Thread> threadsList;
 	
 	public static void main(String args[]) {
+		System.out.println("asd");
 		Main program = new Main();		
 		program.threadsList = new ArrayList<Thread>();
 		
