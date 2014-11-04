@@ -1,18 +1,24 @@
 GP2014-Youtube-Lyrics
 =====================
 
+Tarefas executas:
+- c
+
+
+
 Projeto de GP
 
 | N | API's                 | Func? | URL                                                           | Linguagem  |
 |---|-----------------------|-------|---------------------------------------------------------------|------------|
 |   | vget / wget           | Não.  | https://github.com/axet/vget                                  | Java       |
 |   | JDownloader           |       | http://jdownloader.org/knowledge/wiki/development/get-started | Java       |
-| 1 | youtube-dl            | Sim.  | https://github.com/rg3/youtube-dl/                            | Python     |
 |   | JavaYoutubeDownloader | Não.  |                                                               | Java       |
-|   | get-flash-videos      |       | https://code.google.com/p/get-flash-videos/                   | Perl       |
-|   | KeepVid               |       | http://keepvid.com/                                           | Javascript |
 |   | YTD2                  | Não.  | http://ytd2.sourceforge.net/                                  | Java       |
+|   | KeepVid               |       | http://keepvid.com/                                           | Javascript |
+|   | get-flash-videos      |       | https://code.google.com/p/get-flash-videos/                   | Perl       |
+| 1 | youtube-dl            | Sim.  | https://github.com/rg3/youtube-dl/                            | Python     |
 | 2 | PAFY                  | Sim.  | https://github.com/np1/pafy                                   | Python     |
+| 3 | mps-youtube           |       | https://github.com/np1/mps-youtube                            | Python     |
 
 1. youtube-dl
   - Biblioteca em python
@@ -30,3 +36,8 @@ Projeto de GP
   - Formatos de audio:
     * m4a, ogg
   - Corre em python 3 (corre em python 2?)
+
+3. MPS-Youtube
+  - Corre em python 2 e em python 3
+  - Requer o mplayer ou o mpv
+  - Possibilita a pesquisa de 
