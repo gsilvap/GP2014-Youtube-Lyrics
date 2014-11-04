@@ -1,6 +1,7 @@
 package youtube;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import readAndValidateData.TextFile;
 
 public class Main {	
