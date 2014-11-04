@@ -1,7 +1,6 @@
 package youtube;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import readAndValidateData.TextFile;
 
 public class Main {	
@@ -9,15 +8,27 @@ public class Main {
 	private final int THREADS = 5;
 	
 	private int threadControl;
+	private ArrayList<Thread> threadsList;
 	
 	public static void main(String args[]) {
-		Main program = new Main();
+		Main program = new Main();		
+		program.threadsList = new ArrayList<Thread>();
+		
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			public void run() {
+				program.threadsList.forEach(element -> {
+					if(element.isAlive())
+						element.interrupt();
+				});
+			}
+		});
+		
 		program.run();
+		
 	}
 	
-	private void run() {
+	private void run() {		
 		threadControl = 0;
-		
 		TextFile regexFile = new TextFile();
 		String regex = "";
 		String pattern = "";
@@ -49,17 +60,27 @@ public class Main {
 					Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
 					this.timer(5);
 				}
-				new Thread(() -> {
+				
+				Thread t = new Thread(() -> {
 					threadControl++;
+					Utilities.debug("[DOWNLOADING] ["+video.getId()+"] Metadata");
 					video.downloadFilename();
-					video.downloadTitle();
-					Utilities.debug("[DOWNLOADING] ["+video.getId()+"] "+video.getTitle());
-					video.downloadVideo();		
-					Utilities.debug("[TERMINATED ] ["+video.getId()+"] "+video.getTitle());
-					
+					if (video.getState()==Video.State.VALID){
+						video.downloadTitle();
+						Utilities.debug("[DOWNLOADING] ["+video.getId()+"] "+video.getTitle());
+						if (video.getState()==Video.State.VALID){
+							video.downloadVideo();		
+							Utilities.debug("[TERMINATED ] ["+video.getId()+"] "+video.getTitle());
+						}else{
+							System.out.println("[ERRO] ["+video.getId()+"]  Link inacessivel");
+						}
+					}else{
+						System.out.println("[ERRO] ["+video.getId()+"]  Link inacessivel");
+					}
 					threadControl--;
-				}).start();
-
+				});
+				threadsList.add(t);
+				t.start();
 			}
 			else
 				System.out.println("Video invalido");
@@ -70,6 +91,8 @@ public class Main {
 	
 	private ArrayList<Video> populate() {
 		ArrayList<Video> links = new ArrayList<Video>();
+		//Link 404
+		links.add(new Video("https://www.youtube.com/watch?v=i-GFalTRHDA"));
 		
 		links.add(new Video("https://www.youtube.com/watch?v=1YWDLjvfEs4"));
 		links.add(new Video("http://www.youtube.com/watch?v=1YWDLjvfEs4"));
