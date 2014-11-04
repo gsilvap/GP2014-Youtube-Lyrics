@@ -12,7 +12,6 @@ public class Main {
 	private ArrayList<Thread> threadsList;
 	
 	public static void main(String args[]) {
-		System.out.println("O Gonçalo e o maior!");
 		Main program = new Main();		
 		program.threadsList = new ArrayList<Thread>();
 		
