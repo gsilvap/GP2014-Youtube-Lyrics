@@ -51,3 +51,9 @@ GP2014-Youtube-Lyrics - Projeto de GP
   - Corre em python 2 e em python 3
   - Requer o mplayer ou o mpv
   - Possibilita a pesquisa de 
+
+
+###### - Validação do URL
+
+Como é feita a validação dos links?
+Que links estão a ser verificados?
