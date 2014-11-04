@@ -1,20 +1,19 @@
 GP2014-Youtube-Lyrics
 =====================
 
-  # Tarefas executadas:
-  - Validação do URL
-  - Download de metadados
-  - Download Video MP4
+### Tarefas executadas:
+Validação do URL
+Download de metadados
+Download Video MP4
   
 ### Execução de 5 pedidos de cada vez recorrendo a Threads
 ### Ler regex e pattern de ficheiro
 
-  # Tarefas a executar:
-  - Selecionar o melhor formato em MP4
-  - Pós-tratamento de metadados
-  - Download da letra da música
-  - Criação do Crawler para 3 a 5 sites diferentes
-
+### Tarefas a executar:
+##### Selecionar o melhor formato em MP4
+##### Pós-tratamento de metadados
+##### Download da letra da música
+##### Criação do Crawler para 3 a 5 sites diferentes
 
 
 Projeto de GP
