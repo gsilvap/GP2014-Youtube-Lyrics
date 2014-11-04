@@ -2,7 +2,7 @@ GP2014-Youtube-Lyrics
 =====================
 
   Tarefas executadas:
-  =========================
+  --------
   - Validação do URL
   - Download de metadados
   - Download Video MP4
@@ -11,7 +11,7 @@ GP2014-Youtube-Lyrics
   + Ler regex e pattern de ficheiro
 
   Tarefas a executar:
-  =========================
+  --------
   - Selecionar o melhor formato em MP4
   - Pós-tratamento de metadados
   - Download da letra da música
