@@ -1,7 +1,6 @@
 GP2014-Youtube-Lyrics
 =====================
-
-  Tarefas executadas:
+  # Tarefas executadas:
   --------
   - Validação do URL
   - Download de metadados
@@ -10,7 +9,7 @@ GP2014-Youtube-Lyrics
   + Execução de 5 pedidos de cada vez recorrendo a Threads
   + Ler regex e pattern de ficheiro
 
-  Tarefas a executar:
+  # Tarefas a executar:
   --------
   - Selecionar o melhor formato em MP4
   - Pós-tratamento de metadados
