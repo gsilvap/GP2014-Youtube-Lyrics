@@ -2,12 +2,11 @@ GP2014-Youtube-Lyrics
 =====================
 
 ### Tarefas executadas:
-###### Validação do URL
-###### Download de metadados
-###### Download Video MP4
-  
-#### Execução de 5 pedidos de cada vez recorrendo a Threads
-#### Ler regex e pattern de ficheiro
+###### - Validação do URL
+###### - Download de metadados
+###### - Download Video MP4
+##### Execução de 5 pedidos de cada vez recorrendo a Threads
+##### Ler regex e pattern de ficheiro
 
 ### Tarefas a executar:
 ###### Selecionar o melhor formato em MP4
