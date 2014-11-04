@@ -3,7 +3,7 @@ GP2014 Youtube Lyrics
 
 Tarefas executadas:
   - [APIs](https://github.com/gsilvap/GP2014-Youtube-Lyrics/blob/master/README.md#apis)
-  - [Validação do URL](https://github.com/gsilvap/GP2014-Youtube-Lyrics/blob/master/README.md#valida%C3%A7%C3%A3o-do-url)
+  - [Validação do URL](https://github.com/gsilvap/GP2014-Youtube-Lyrics/blob/master/README.md#validacao-do-url)
   - Download de metadados
   - Download Video MP4
     *Execução de 5 pedidos de cada vez recorrendo a Threads
@@ -53,7 +53,7 @@ Tarefas a executar:
   - Possibilita a pesquisa de 
 
 
-### Validação do URL
+### Validacao do URL
 
 Como é feita a validação dos links?
 Que links estão a ser verificados?
