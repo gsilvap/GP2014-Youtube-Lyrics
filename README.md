@@ -1,7 +1,8 @@
-GP2014-Youtube-Lyrics
+GP2014-Youtube-Lyrics - Projeto de GP
 =====================
 
 ### Tarefas executadas:
+###### API's
 ###### - Validação do URL
 ###### - Download de metadados
 ###### - Download Video MP4
@@ -15,7 +16,7 @@ GP2014-Youtube-Lyrics
 ###### Criação do Crawler para 3 a 5 sites diferentes
 
 
-Projeto de GP
+###### API's
 
 | N | API's                 | Func? | URL                                                           | Linguagem  |
 |---|-----------------------|-------|---------------------------------------------------------------|------------|
