@@ -2,7 +2,7 @@ GP2014 Youtube Lyrics
 =====================
 
 Tarefas executadas:
-  - [APIs](https://github.com/gsilvap/GP2014-Youtube-Lyrics/blob/master/README.md#apis-1)
+  - [APIs](https://github.com/gsilvap/GP2014-Youtube-Lyrics/blob/master/README.md#apis)
   - Validação do URL
   - Download de metadados
   - Download Video MP4
