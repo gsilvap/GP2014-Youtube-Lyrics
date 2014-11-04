@@ -7,7 +7,7 @@ GP2014-Youtube-Lyrics
   - Download de metadados
   - Download Video MP4
   
-  + Execução de 5 pedidos de cada vez recorrendo a Threads
+  ** Execução de 5 pedidos de cada vez recorrendo a Threads
 
   Tarefas a executar:
   =========================
