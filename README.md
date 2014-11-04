@@ -2,7 +2,8 @@ GP2014-Youtube-Lyrics
 =====================
 
 Tarefas executas:
-- c
+- 
+- 
 
 
 
