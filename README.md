@@ -1,22 +1,22 @@
-GP2014-Youtube-Lyrics - Projeto de GP
+GP2014 Youtube Lyrics
 =====================
 
-### Tarefas executadas:
-###### API's
-###### - Validação do URL
-###### - Download de metadados
-###### - Download Video MP4
-##### Execução de 5 pedidos de cada vez recorrendo a Threads
-##### Ler regex e pattern de ficheiro
+Tarefas executadas:
+  - [APIs](https://github.com/gsilvap/GP2014-Youtube-Lyrics/blob/master/README.md#apis-1)
+  - Validação do URL
+  - Download de metadados
+  - Download Video MP4
+    *Execução de 5 pedidos de cada vez recorrendo a Threads
+    *Ler regex e pattern de ficheiro
 
-### Tarefas a executar:
-###### Selecionar o melhor formato em MP4
-###### Pós-tratamento de metadados
-###### Download da letra da música
-###### Criação do Crawler para 3 a 5 sites diferentes
+Tarefas a executar:
+  - Selecionar o melhor formato em MP4
+  - Pós-tratamento de metadados
+  - Download da letra da música
+  - Criação do Crawler para 3 a 5 sites diferentes
 
 
-###### API's
+### APIs
 
 | N | API's                 | Func? | URL                                                           | Linguagem  |
 |---|-----------------------|-------|---------------------------------------------------------------|------------|
@@ -53,7 +53,11 @@ GP2014-Youtube-Lyrics - Projeto de GP
   - Possibilita a pesquisa de 
 
 
-###### - Validação do URL
+### Validação do URL
 
 Como é feita a validação dos links?
 Que links estão a ser verificados?
+
+### Threads
+
+Quantas threads são criadas?
