@@ -2,6 +2,7 @@ package youtube;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
@@ -27,6 +28,9 @@ public class Utilities {
 			if (DEBUG) debug("["+id+"] [exit] " + exitValue);
 			p.destroy();
 			result.add(Integer.toString(exitValue));
+		} catch (IOException e){
+			System.out.println("[ERROR] Verifique os requisitos minimos do sistema."
+							 + "[ERROR] Necessário instalar youtube-dl e python\n");
 		} catch (Exception e) {
 			System.out.println("Excepcao");
 		}
