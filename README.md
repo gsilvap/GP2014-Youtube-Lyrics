@@ -1,22 +1,24 @@
-GP2014-Youtube-Lyrics - Projeto de GP
+GP2014 Youtube Lyrics
 =====================
 
-### Tarefas executadas:
-###### API's
-###### - Validação do URL
-###### - Download de metadados
-###### - Download Video MP4
-##### Execução de 5 pedidos de cada vez recorrendo a Threads
-##### Ler regex e pattern de ficheiro
+### Resumo de atividade
 
-### Tarefas a executar:
-###### Selecionar o melhor formato em MP4
-###### Pós-tratamento de metadados
-###### Download da letra da música
-###### Criação do Crawler para 3 a 5 sites diferentes
+#### Tarefas executadas:
+  - [APIs](#apis)
+  - [Validação do URL](#validacao-do-url)
+  - [Download de metadados](#download-de-metadados)
+    * [Ler regex e pattern de ficheiro](#ler-regex-e-pattern-de-ficheiro)
+  - [Download Video MP4](#download-video-mp4)
+    * [Execução de 5 pedidos de cada vez recorrendo a Threads](#execucao-de-5-pedidos-de-cada-vez-recorrendo-a-threads)
+
+#### Tarefas a executar:
+  - [Selecionar o melhor formato em MP4](#selecionar-o-melhor-formato-em-mp4)
+  - [Pós-tratamento de metadados](#pos-tratamento-de-metadados)
+  - [Download da letra da música](#download-da-letra-da-musica)
+  - [Criação do Crawler para 3 a 5 sites diferentes](#criacao-do-crawler-para-3-a-5-sites-diferentes)
 
 
-###### API's
+### APIs
 
 | N | API's                 | Func? | URL                                                           | Linguagem  |
 |---|-----------------------|-------|---------------------------------------------------------------|------------|
@@ -50,10 +52,21 @@ GP2014-Youtube-Lyrics - Projeto de GP
 3. MPS-Youtube
   - Corre em python 2 e em python 3
   - Requer o mplayer ou o mpv
-  - Possibilita a pesquisa de 
+  - Possibilita a pesquisa de videos
 
+###### A framework escolhida foi a primeira, uma vez que a mesma mostrou ter diversas potencialidades ao nivel do download de informação e de videos do youtube.
 
-###### - Validação do URL
+### Validacao do URL
+#### Ler regex e pattern de ficheiro
 
 Como é feita a validação dos links?
 Que links estão a ser verificados?
+
+### Download de metadados
+### Download Video MP4
+#### Execução de 5 pedidos de cada vez recorrendo a Threads
+
+### Selecionar o melhor formato em MP4
+### Pos-tratamento de metadados
+### Download da letra da musica
+### Criacao do Crawler para 3 a 5 sites diferentes
