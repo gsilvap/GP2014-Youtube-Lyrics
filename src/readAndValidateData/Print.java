@@ -7,9 +7,8 @@ import java.util.GregorianCalendar;
 import java.util.Set;
 
 /**
- * Class Print - Impress�o de dados
+ * Class Print - Impressao de dados
  * @author Goncalo Silva Pereira 2009111643
- * @author Paulo Miguel Guimaraes da Silva 2009116753
  */
 public class Print {
 	/**

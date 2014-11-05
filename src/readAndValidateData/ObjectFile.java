@@ -8,9 +8,8 @@ import java.io.ObjectOutputStream;
 import java.util.GregorianCalendar;
 
 /**
- * Class ObjectFile - Gest�o de ficheiros de objectos
+ * Class ObjectFile - Gestao de ficheiros de objectos
  * @author Goncalo Silva Pereira 2009111643
- * @author Paulo Miguel Guimaraes da Silva 2009116753
  */
 public class ObjectFile {
 	private ObjectInputStream inputStream;
@@ -27,7 +26,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * Abre o fluxo de sa�da de dados do ficheiro
+	 * Abre o fluxo de saida de dados do ficheiro
 	 * @param fileName Nome do ficheiro
 	 * @throws IOException
 	 */
@@ -37,7 +36,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * L� um objecto do fluxo de entrada
+	 * Le um objecto do fluxo de entrada
 	 * @return Objecto Lido do fluxo
 	 * @throws IOException
 	 * @throws ClassNotFoundException
@@ -48,7 +47,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * Escreve um objecto no fluxo de sa�da
+	 * Escreve um objecto no fluxo de saida
 	 * @param o Objecto para escrever no fluxo
 	 * @throws IOException
 	 */
@@ -58,7 +57,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * L� um inteiro do fluxo de entrada
+	 * Le um inteiro do fluxo de entrada
 	 * @return int numero inteiro
 	 * @throws IOException
 	 */
@@ -68,7 +67,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * Escreve um inteiro no fluxo de sa�da 
+	 * Escreve um inteiro no fluxo de saida 
 	 * @param number numero para escrever no fluxo
 	 * @throws IOException
 	 */
@@ -78,7 +77,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * L� uma String do fluxo de entrada
+	 * Le uma String do fluxo de entrada
 	 * @return String string lida do fluxo
 	 * @throws IOException
 	 */
@@ -92,7 +91,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * Escreve uma String no fluxo de sa�da 
+	 * Escreve uma String no fluxo de saida 
 	 * @param string para escrever no fluxo
 	 * @throws IOException
 	 */
@@ -103,7 +102,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * L� uma Data do fluxo de entrada
+	 * Le uma Data do fluxo de entrada
 	 * @return GregorianCalendar date lida do fluxo
 	 * @throws IOException
 	 */
@@ -114,7 +113,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * Escreve uma Data no fluxo de sa�da
+	 * Escreve uma Data no fluxo de saida
 	 * @param date para escrever no fluxo
 	 * @throws IOException
 	 */
@@ -133,7 +132,7 @@ public class ObjectFile {
 	}
 	
 	/**
-	 * Fecha o fluxo de sa�da
+	 * Fecha o fluxo de saida
 	 * @throws IOException
 	 */
 	public void closeWrite() throws IOException

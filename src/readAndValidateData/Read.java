@@ -8,7 +8,6 @@ import java.util.Scanner;
 /**
  * Class Read - Leitura de dados do utlizador
  * @author Goncalo Silva Pereira 2009111643
- * @author Paulo Miguel Guimaraes da Silva 2009116753
  */
 public class Read {
 	// Inteiro Neutro

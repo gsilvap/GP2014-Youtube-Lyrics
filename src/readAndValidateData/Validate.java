@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Class Validate - Valida��es de dados
+ * Class Validate - Validacoes de dados
  * @author Goncalo Silva Pereira 2009111643
  * @author Paulo Miguel Guimaraes da Silva 2009116753
  */
@@ -14,7 +14,7 @@ public class Validate {
 	public static final int DAYLENGTH = 2;
 	
 	/**
-	 * Recebe uma string e verifica se todos os caracteres dessa string s�o digitos
+	 * Recebe uma string e verifica se todos os caracteres dessa string sao digitos
 	 * @param aux String para validar
 	 * @return boolean
 	 */
@@ -31,9 +31,9 @@ public class Validate {
 	}	
 	
 	/**
-	 * Recebe uma string e verifica se todos os caracteres dessa string s�o letras e/ou espa�os
+	 * Recebe uma string e verifica se todos os caracteres dessa string sao letras e/ou espacos
 	 * @param aux String para validar
-	 * @param withWhitespace booleano que indica se a String pode ou n�o ter espa�os
+	 * @param withWhitespace booleano que indica se a String pode ou nao ter espacos
 	 * @return boolean
 	 */
 	public static boolean validString(String aux, boolean withWhitespace)
@@ -67,7 +67,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Verifica se um dada mes existe ou n�o
+	 * Verifica se um dada mes existe ou nao
 	 * @param date String para validar
 	 * @return boolean
 	 */
@@ -93,7 +93,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Verifica se uma dada data existe ou n�o
+	 * Verifica se uma dada data existe ou nao
 	 * @param date String para validar
 	 * @param mes mes onde a data tem de se encontrar
 	 * @return boolean
@@ -116,7 +116,7 @@ public class Validate {
 	    {
 	    	return false;
 	    }
-//	    Verificar se a data � mesmo v�lida
+//	    Verificar se a data e mesmo valida
 	    if (!sdf.format(newDate).equals(date))
 	    {
 	    	return false;
@@ -125,7 +125,7 @@ public class Validate {
 	}
 	
 	/**
-	 * Verifica se uma dada data existe ou n�o
+	 * Verifica se uma dada data existe ou nao
 	 * @param date String para validar
 	 * @return boolean
 	 */
@@ -142,7 +142,7 @@ public class Validate {
 	    {
 	    	return false;
 	    }
-//	    Verificar se a data � mesmo v�lida
+//	    Verificar se a data e mesmo valida
 	    if (!sdf.format(newDate).equals(date))
 	    {
 	    	return false;

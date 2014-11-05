@@ -4,9 +4,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Class Utilities - Fun��es ute�s para o desenvolvimento da cl�nica
+ * Class Utilities - Funcoes uteis
  * @author Goncalo Silva Pereira 2009111643
- * @author Paulo Miguel Guimaraes da Silva 2009116753
  */
 public class Utilities
 {
@@ -14,7 +13,7 @@ public class Utilities
 	
 	
 	/**
-	 * Fun��o para comparar e devolver a diferen�a em dias entre duas datas
+	 * Funcao para comparar e devolver a diferenca em dias entre duas datas
 	 * @param inputA Data inicial
 	 * @param inputB Data final
 	 * @return int difference
@@ -56,7 +55,7 @@ public class Utilities
 	}
 	
 	/**
-	 * Fun��o para verificar se uma data � depois da outra
+	 * Funcao para verificar se uma data e depois da outra
 	 * @param inputA Data inicial
 	 * @param inputB Data final
 	 * @return boolean
@@ -71,11 +70,11 @@ public class Utilities
 	}
 	
 	/**
-	 * Fun��o para verificar se dois intervalos de dias t�m algum dia coincidente
+	 * Funcao para verificar se dois intervalos de dias tem algum dia coincidente
 	 * @param inputA Data inicial
 	 * @param inputB Data final
 	 * @param dateOfEntry Data de entrada do internamento
-	 * @param dateOfDeparture Data de sa�da do internamento
+	 * @param dateOfDeparture Data de saida do internamento
 	 * @return boolean
 	 */
 	public static boolean withCoincidentDay(GregorianCalendar inputA, GregorianCalendar inputB, GregorianCalendar dateOfEntry, GregorianCalendar dateOfDeparture)
@@ -99,7 +98,7 @@ public class Utilities
 	}
 	
 	/**
-	* Fun��o para comparar e devolver a diferen�a em meses entre duas datas
+	* Funcao para comparar e devolver a diferenca em meses entre duas datas
 	* @param inputA Data inicial
 	* @param inputB Data final
 	* @return int difference
@@ -135,7 +134,7 @@ public class Utilities
 	}
 	
 	/**
-	 * Fun��o para verificar se duas datas pertencem ao mesmo m�s
+	 * Funcao para verificar se duas datas pertencem ao mesmo mes
 	 * @param inputA Data
 	 * @param inputB Data
 	 * @return boolean
@@ -150,7 +149,7 @@ public class Utilities
 	}
 	
 	/**
-	 * Fun��o para encontrar o mair n�mero inteiro
+	 * Funcao para encontrar o mair numero inteiro
 	 * @param vect Vector de pesquisa
 	 * @return int max
 	 */
@@ -165,7 +164,7 @@ public class Utilities
 	}
 	
 	/**
-	 * Fun��o para verificar se uma determinada data est� entre outras duas
+	 * Funcao para verificar se uma determinada data esta entre outras duas
 	 * @param inputA Data inicial
 	 * @param inputB Data final
 	 * @param inBetween Data interm�dia para validar

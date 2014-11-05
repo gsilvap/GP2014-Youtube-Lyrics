@@ -8,9 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Class TextFile - Gest�o de ficheiros de texto
+ * Class TextFile - Gestao de ficheiros de texto
  * @author Goncalo Silva Pereira 2009111643
- * @author Paulo Miguel Guimaraes da Silva 2009116753
  */
 public class TextFile {
 	private BufferedReader fileReader;
@@ -42,7 +41,7 @@ public class TextFile {
 	}
 	
 	/**
-	 * Ler um n�mero inteiro do buffer
+	 * Ler um numero inteiro do buffer
 	 * @return int[] result
 	 * @throws IOException
 	 */
@@ -114,7 +113,7 @@ public class TextFile {
 	}
 	
 	/**
-	 * Verifica se um dado ficheiro existe ou n�o
+	 * Verifica se um dado ficheiro existe ou nao
 	 * @param fileName nome do ficheiro
 	 * @return boolean
 	 */
