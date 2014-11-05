@@ -12,7 +12,6 @@ public class Main {
 	private ArrayList<Thread> threadsList;
 	
 	public static void main(String args[]) {
-		System.out.println("asd");
 		Main program = new Main();		
 		program.threadsList = new ArrayList<Thread>();
 		
@@ -27,6 +26,14 @@ public class Main {
 		
 		program.run();
 		
+	}
+	
+	public synchronized void addThread() {
+		threadControl++;
+	}
+
+	public synchronized void closeThread() {
+		threadControl--;
 	}
 	
 	private void run() {		
@@ -57,14 +64,15 @@ public class Main {
 			video.validate(regex, pattern);
 			if (video.isValid())
 			{	
+//				System.out.println("[N THREADS] --> " + threadControl);
 				// Download de varios links na máximo 5 em simultaneo
 				while(threadControl>=THREADS){
 					Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
 					this.timer(5);
 				}
 				
+				addThread();
 				Thread t = new Thread(() -> {
-					threadControl++;
 					Utilities.debug("[DOWNLOADING] ["+video.getId()+"] Metadata");
 					video.downloadFilename();
 					if (video.getState()==Video.State.VALID){
@@ -79,7 +87,7 @@ public class Main {
 					}else{
 						System.out.println("[ERRO] ["+video.getId()+"]  Link inacessivel");
 					}
-					threadControl--;
+					closeThread();
 				});
 				threadsList.add(t);
 				t.start();
