@@ -63,13 +63,18 @@ Como é feita a validação dos links?
 Que links estão a ser verificados?
 
 ### Download de metadados
+texto
 ### Download Video MP4
 
 Neste momento o programa está a fazer o download do video no melhor formato.
 
 #### Execução de 5 pedidos de cada vez recorrendo a Threads
-
+texto
 ### Selecionar o melhor formato em MP4
+texto
 ### Pos-tratamento de metadados
+texto
 ### Download da letra da musica
+texto
 ### Criacao do Crawler para 3 a 5 sites diferentes
+texto
