@@ -64,6 +64,9 @@ Que links estão a ser verificados?
 
 ### Download de metadados
 ### Download Video MP4
+
+Neste momento o programa está a fazer o download do video no melhor formato.
+
 #### Execução de 5 pedidos de cada vez recorrendo a Threads
 
 ### Selecionar o melhor formato em MP4
