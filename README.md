@@ -14,8 +14,12 @@ GP2014 Youtube Lyrics
 #### Tarefas a executar:
   - [Selecionar o melhor formato em MP4](#selecionar-o-melhor-formato-em-mp4)
   - [Pós-tratamento de metadados](#pos-tratamento-de-metadados)
-  - [Download da letra da música](#download-da-letra-da-musica)
   - [Criação do Crawler para 3 a 5 sites diferentes](#criacao-do-crawler-para-3-a-5-sites-diferentes)
+  - [Download da letra da música](#download-da-letra-da-musica)
+
+### Testes
+  - Videos invalidos
+  - Playlists
 
 
 ### APIs
@@ -77,4 +81,8 @@ texto
 ### Download da letra da musica
 texto
 ### Criacao do Crawler para 3 a 5 sites diferentes
-texto
+  - http://www.azlyrics.com/
+  - http://www.metrolyrics.com/
+  - http://www.songlyrics.com/
+  - http://www.lyricsmode.com/
+  - http://www.lyricsfreak.com/
