@@ -43,7 +43,7 @@ public class Utilities {
 			p.destroy();
 			result.add(Integer.toString(exitValue));
 		} catch (IOException e) {
-			System.out.println("[ERROR] Verifique os requisitos minimos do sistema." + "[ERROR] Necessário instalar youtube-dl e python\n");
+			System.out.println("[ERROR] Verifique os requisitos minimos do sistema.\n[ERROR] Necessário instalar youtube-dl e python\n");
 		} catch (Exception e) {
 			System.out.println("Excepcao");
 		}
