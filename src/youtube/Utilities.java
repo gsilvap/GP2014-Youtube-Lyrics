@@ -17,8 +17,8 @@ public class Utilities {
 
 	/**
 	 * Executa as chamadas ao youtube-dl
-	 * @param cmd
-	 * @param id
+	 * @param cmd Comando a executar
+	 * @param id Id do video
 	 * @return ArrayList<String> result
 	 */
 	public static ArrayList<String> runCmd(String cmd, String id) {
@@ -56,7 +56,7 @@ public class Utilities {
 
 	/**
 	 * Elimina os ficheiros .extension 
-	 * @param extension
+	 * @param extension extensao do ficheiro a eliminar
 	 */
 	public static void deleteFilesByExtension(String extension) {
 		File folder = new File(".");
