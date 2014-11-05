@@ -131,6 +131,7 @@ public class Video {
 //		TODO Verificar outros erros
 		else {
 			System.out.println("\\TODO Outros erros, quais?");
+			result.forEach(element -> System.err.println(element));
 		}
 	}
 

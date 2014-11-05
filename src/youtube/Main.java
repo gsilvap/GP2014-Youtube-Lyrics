@@ -1,42 +1,66 @@
 package youtube;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 import readAndValidateData.TextFile;
 
-public class Main {	
-	
+/**
+ * Class Main - classe principal
+ * 
+ * @author Celso Rafael Clara Mendes 2009109378
+ * @author Goncalo Silva Pereira 2009111643
+ */
+public class Main {
+
 	private final int THREADS = 5;
-	
+
 	private int threadControl;
+
 	private ArrayList<Thread> threadsList;
-	
+
+	/**
+	 * Funcao principal, cria e executa o programa adiciona
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
-		Main program = new Main();		
+		Main program = new Main();
+
+		// TODO Integrar com ficheiro e startup
+
 		program.threadsList = new ArrayList<Thread>();
-		
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
-				program.threadsList.forEach(element -> {
-					if(element.isAlive())
+				program.threadsList.forEach(element ->
+				{
+					if (element.isAlive())
 						element.interrupt();
 				});
 			}
 		});
-		
+
 		program.run();
-		
 	}
-	
+
+	/**
+	 * Incrementa a variavel ao criar uma Thread
+	 */
 	public synchronized void addThread() {
 		threadControl++;
 	}
 
+	/**
+	 * Decrementa a variavel ao terminar uma thread
+	 */
 	public synchronized void closeThread() {
 		threadControl--;
 	}
-	
-	private void run() {		
+
+	/**
+	 * executa o programa
+	 */
+	private void run() {
 		threadControl = 0;
 		TextFile regexFile = new TextFile();
 		String regex = "";
@@ -48,62 +72,67 @@ public class Main {
 			regexFile.closeRead();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
-		} 
-		
-//		System.out.println("'"+regex+"'");
-//		System.out.println(pattern);
-		
-//		System.exit(0);
+			// e.printStackTrace();
+			regex = "";
+			pattern = "";
+		}
+
+		// System.out.println("'"+regex+"'");
+		// System.out.println(pattern);
+
+		// System.exit(0);
 		Utilities.deleteFilesByExtension(".part");
 		Utilities.deleteFilesByExtension(".mp4");
 		ArrayList<Video> links = populate();
-		
-		
+
 		for (Video video : links) {
 			video.validate(regex, pattern);
-			if (video.isValid())
-			{	
-//				System.out.println("[N THREADS] --> " + threadControl);
+			if (video.isValid()) {
+				// System.out.println("[N THREADS] --> " + threadControl);
 				// Download de varios links na máximo 5 em simultaneo
-				while(threadControl>=THREADS){
+				while (threadControl >= THREADS) {
 					Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
 					this.timer(5);
 				}
-				
+
 				addThread();
-				Thread t = new Thread(() -> {
-					Utilities.debug("[DOWNLOADING] ["+video.getId()+"] Metadata");
+				Thread t = new Thread(() ->
+				{
+					Utilities.debug("[DOWNLOADING] [" + video.getId() + "] Metadata");
 					video.downloadFilename();
-					if (video.getState()==Video.State.VALID){
+					if (video.getState() == Video.State.VALID) {
 						video.downloadTitle();
-						Utilities.debug("[DOWNLOADING] ["+video.getId()+"] "+video.getTitle());
-						if (video.getState()==Video.State.VALID){
-							video.downloadVideo();		
-							Utilities.debug("[TERMINATED ] ["+video.getId()+"] "+video.getTitle());
-						}else{
-							System.out.println("[ERRO] ["+video.getId()+"]  Link inacessivel");
+						Utilities.debug("[DOWNLOADING] [" + video.getId() + "] " + video.getTitle());
+						if (video.getState() == Video.State.VALID) {
+							video.downloadVideo();
+							Utilities.debug("[TERMINATED ] [" + video.getId() + "] " + video.getTitle());
+						} else {
+							System.out.println("[ERRO] [" + video.getId() + "]  Link inacessivel");
 						}
-					}else{
-						System.out.println("[ERRO] ["+video.getId()+"]  Link inacessivel");
+					} else {
+						System.out.println("[ERRO] [" + video.getId() + "]  Link inacessivel");
 					}
 					closeThread();
 				});
 				threadsList.add(t);
 				t.start();
-			}
-			else
+			} else
 				System.out.println("Video invalido");
-			
-//			Utilities.debug("[STATE] ["+video.getId()+"] "+video.getState());
+
+			// Utilities.debug("[STATE] ["+video.getId()+"] "+video.getState());
 		}
 	}
-	
+
+	/**
+	 * Popular o sistema com links de teste
+	 * 
+	 * @return links Lista de Videos a verificar
+	 */
 	private ArrayList<Video> populate() {
 		ArrayList<Video> links = new ArrayList<Video>();
-		//Link 404
+		// Link 404
 		links.add(new Video("https://www.youtube.com/watch?v=i-GFalTRHDA"));
-		
+
 		links.add(new Video("https://www.youtube.com/watch?v=1YWDLjvfEs4"));
 		links.add(new Video("http://www.youtube.com/watch?v=1YWDLjvfEs4"));
 		links.add(new Video("http://www.youtube.com/watch?v=Iv-Xmv2yjjQ"));
@@ -136,10 +165,15 @@ public class Main {
 		links.add(new Video("http://youtu.be/jJT0Suanqhg?t=37s"));
 		links.add(new Video("http://youtu.be/jJT0Suanqhg"));
 		links.add(new Video("http://youtu.be/j1V33b2ZEIo?list=RDj1V33b2ZEIo"));
-		
+
 		return links;
 	}
-	
+
+	/**
+	 * Funcao de sleep de x segundos
+	 * 
+	 * @param seconds
+	 */
 	private void timer(double seconds) {
 		try {
 			Thread.sleep((int) (1000 * seconds));
