@@ -40,6 +40,8 @@ public class Crawler {
 		}
 	}
 
+//	TODO Cleaning
+//	TODO remove prints and return lyrica
 	private int downloadAZLyric(String nameAuthor, String nameMusic, int debug) {
 		String url = "http://search.azlyrics.com/search.php?q=";
 		url = url + nameAuthor.replace(" ", "+")+"+"+nameMusic.replace(" ", "+");
