@@ -22,11 +22,6 @@ public class Utilities {
 		return msg.toLowerCase().replace("the ", "").replace(" ", "");
 	}
 	
-	public static String changeStringToURL(String msg, String character)
-	{
-		return msg.toLowerCase().replace("'", "").replace("& ", "").replace(" ", character);
-	}
-	
 	public static  String changeStringToSearch(String msg)
 	{
 		return msg.replace(" ", "+");

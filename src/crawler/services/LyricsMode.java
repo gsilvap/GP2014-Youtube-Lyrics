@@ -1,5 +1,7 @@
 package crawler.services;
 
+import java.util.ArrayList;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -17,36 +19,39 @@ public class LyricsMode implements LyricSite {
 	public String downloadLyric(String nameAuthor, String nameMusic, int debug) {
 		String urlSearch = URL + Utilities.changeStringToSearch(nameAuthor) + "+" + Utilities.changeStringToSearch(nameMusic);
 
+		ArrayList<String> links = new ArrayList<String>();
+		String aux = "";
 		if (debug == 1)
 			System.out.println(urlSearch);
-
+		aux = nameAuthor + "\n" + nameMusic + "\n" + urlSearch;
 		Document doc = Utilities.getDoc(urlSearch);
 		if (doc != null) {
 			Elements lyrics = doc.select(resultsDiv);
 			for (Element element : lyrics) {
 				String urlOfLyric = element.select("a").attr("href");
 
-				//				try {
-				//					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".lyric"));
-				//				} catch (IOException e) {
-				//					// TODO Auto-generated catch block
-				//					e.printStackTrace();
-				//				}
-
 				urlOfLyric = "http://www.lyricsmode.com" + urlOfLyric;
 				if (debug == 1)
 					System.out.println(urlOfLyric);
-
-				if (urlOfLyric.contains(Utilities.changeStringToURL(nameMusic, "_")) && urlOfLyric.contains(Utilities.changeStringToURL(nameAuthor, "_"))) {
+				aux += "\n" + urlOfLyric;
+				if (urlOfLyric.contains(changeStringToURL(nameMusic)) && urlOfLyric.contains(changeStringToURL(nameAuthor))) {
 					Document lyric = Utilities.getDoc(urlOfLyric);
 					Utilities.sleep();
 
 					String lyrica = lyric.select(lyricDiv).text();
 					System.out.println(lyrica);
+					aux += "\n" + lyrica;
+					links.add(aux);
 					return lyrica;
 				}
 			}
+			links.add(aux);
+			//FIXME:WRITE LIST TO FILE
 		}
 		return null;
+	}
+
+	public static String changeStringToURL(String msg) {
+		return msg.toLowerCase().replace("'", "").replace("& ", "").replace(" ", "_");
 	}
 }
