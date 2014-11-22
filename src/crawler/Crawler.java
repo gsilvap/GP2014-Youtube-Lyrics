@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import crawler.services.AZLyrics;
+
 public class Crawler {
 	/**
 	 * Funcao que executa o programa principal

@@ -1,4 +1,4 @@
-package crawler;
+package crawler.services;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.apache.commons.io.FileUtils;
+
+import crawler.Utilities;
 
 public class AZLyrics {
 	
