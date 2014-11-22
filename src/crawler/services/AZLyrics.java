@@ -11,7 +11,7 @@ import org.apache.commons.io.FileUtils;
 
 import crawler.Utilities;
 
-public class AZLyrics {
+public class AZLyrics implements LyricSite{
 	
 	private static String URL = "http://search.azlyrics.com/search.php?q=";
 	private static String resultsDiv = "div.sen";
@@ -19,7 +19,7 @@ public class AZLyrics {
 	
 //	TODO Cleaning
 //	TODO remove prints and return lyrica
-	public static int downloadLyric(String nameAuthor, String nameMusic, int debug) {
+	public int downloadLyric(String nameAuthor, String nameMusic, int debug) {
 		String urlSearch = URL + Utilities.changeStringToSearch(nameAuthor)+"+"+Utilities.changeStringToSearch(nameMusic);
 		if (debug == 1)System.out.println(urlSearch);
 		Document doc = Utilities.getDoc(urlSearch);
