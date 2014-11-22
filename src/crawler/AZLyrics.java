@@ -1,8 +1,13 @@
 package crawler;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.apache.commons.io.FileUtils;
 
 public class AZLyrics {
 	
@@ -21,6 +26,14 @@ public class AZLyrics {
 			Elements lyrics = doc.select(resultsDiv);
 			for (Element element : lyrics) {
 				String urlOfLyric = element.select("a").attr("href");
+				
+				try {
+					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".lyric"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				if (debug == 1)System.out.println(urlOfLyric);
 				
 				if (urlOfLyric.contains(Utilities.changeStringToURL(nameMusic)) && urlOfLyric.contains(Utilities.changeStringToURL(nameAuthor)))
