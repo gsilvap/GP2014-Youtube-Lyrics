@@ -1,13 +1,8 @@
-package youtube;
+package crawler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class Crawler {
 	/**
@@ -27,7 +22,7 @@ public class Crawler {
 		int count = 0;
 		List<Integer> array = new ArrayList<Integer>();
 		for (int i = 0; i < listAuthors.size(); i++) {
-			int result = downloadAZLyric(listAuthors.get(i), listMusic.get(i), 1);
+			int result = AZLyrics.downloadLyric(listAuthors.get(i), listMusic.get(i), 1);
 			array.add(result);
 			count += result;
 		}
@@ -35,62 +30,8 @@ public class Crawler {
 		
 		System.out.println("DEBUG");
 		for (int i = 0; i < array.size(); i++) {
-			downloadAZLyric(listAuthors.get(i), listMusic.get(i), 1);
+			AZLyrics.downloadLyric(listAuthors.get(i), listMusic.get(i), 1);
 			
-		}
-	}
-
-//	TODO Cleaning
-//	TODO remove prints and return lyrica
-	private int downloadAZLyric(String nameAuthor, String nameMusic, int debug) {
-		String url = "http://search.azlyrics.com/search.php?q=";
-		url = url + nameAuthor.replace(" ", "+")+"+"+nameMusic.replace(" ", "+");
-		if (debug == 1)System.out.println(url);
-		Document doc = getDoc(url);
-		if (doc != null)
-		{
-			Elements lyrics = doc.select("div.sen");
-			for (Element element : lyrics) {
-				String urlOfLyric = element.select("a").attr("href");
-				if (debug == 1)System.out.println(urlOfLyric);
-				
-				if (urlOfLyric.contains(changeString(nameMusic)) && urlOfLyric.contains(changeString(nameAuthor)))
-				{
-//					System.out.println("Correspondencia a 100%");
-					Document lyric = getDoc(urlOfLyric);
-					sleep(5000);
-//					Elements aux = lyric.select("div");
-					String lyrica = lyric.select("div#main div[style=\"margin-left:10px;margin-right:10px;\"]").text();
-					
-					System.out.println(lyrica);
-					return 1;
-//					System.out.println(lyric.select("div#main [margin-left:10px;margin-right:10px;]"));
-				}
-			}
-		}
-		return 0;
-	}
-	
-	private void sleep(int time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private String changeString(String msg)
-	{
-		return msg.toLowerCase().replace("the ", "").replace(" ", "");
-	}
-	
-	private Document getDoc(String url)
-	{
-		try {
-			return Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:25.0) Gecko/20100101 Firefox/25.0").referrer("http://www.google.com").timeout(0).get();
-		} catch (Exception e) {
-			System.out.println("Excepcao");
-			return null;
 		}
 	}
 }
