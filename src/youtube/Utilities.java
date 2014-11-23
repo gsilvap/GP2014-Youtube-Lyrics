@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class para efetuar o download dos videos 
@@ -13,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Utilities {
 
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 
 	/**
 	 * Executa as chamadas ao youtube-dl
@@ -32,18 +34,16 @@ public class Utilities {
 			p = Runtime.getRuntime().exec(cmd);
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = br.readLine()) != null) {
-				if (DEBUG)
-					debug("[" + id + "] " + s);
+				if (DEBUG) debug("[" + id + "] " + s);
 				result.add(s);
 			}
 			p.waitFor();
 			exitValue = p.exitValue();
-			if (DEBUG)
-				debug("[" + id + "] [exit] " + exitValue);
+			if (DEBUG) debug("[" + id + "] [exit] " + exitValue);
 			p.destroy();
 			result.add(Integer.toString(exitValue));
 		} catch (IOException e) {
-			System.out.println("[ERROR] Verifique os requisitos minimos do sistema.\n[ERROR] Necessário instalar youtube-dl e python\n");
+			System.out.println("[ERROR] Verifique os requisitos minimos do sistema.\n[ERROR] Necessario instalar youtube-dl e python\n");
 		} catch (Exception e) {
 			System.out.println("Excepcao");
 		}
@@ -66,5 +66,23 @@ public class Utilities {
 				listOfFiles[i].delete();
 
 		}
+	}
+	
+	public static String returnId(String url, String pattern)
+	{
+		if (pattern.compareTo("") == 0) {
+			pattern = "(be/|v=|/v/|/embed/|/watch/)([\\w_-]{11})";
+		}
+		Pattern compiledPattern = Pattern.compile(pattern);
+		Matcher matcher = compiledPattern.matcher(url);
+
+		if (matcher.find()) {
+			String id = matcher.group();
+			//	    			.substring(id.length()-11, id.length());
+			id = id.substring(id.length() - 11, id.length());
+			return id;
+		}
+		else
+			return "";
 	}
 }

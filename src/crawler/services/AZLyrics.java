@@ -30,7 +30,8 @@ public class AZLyrics implements LyricSite{
 				String urlOfLyric = element.select("a").attr("href");
 				
 				try {
-					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".lyric"));
+					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".html"));
+					Utilities.sleep(2000);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -41,12 +42,12 @@ public class AZLyrics implements LyricSite{
 				if (urlOfLyric.contains(Utilities.changeStringToURL(nameMusic)) && urlOfLyric.contains(Utilities.changeStringToURL(nameAuthor)))
 				{
 //					System.out.println("Correspondencia a 100%");
-					Document lyric = Utilities.getDoc(urlSearch);
-					Utilities.sleep();
+//					Document lyric = Utilities.getDoc(urlSearch);
+//					Utilities.sleep();
 //					Elements aux = lyric.select("div");
-					String lyrica = lyric.select(lyricDiv).text();
+//					String lyrica = lyric.select(lyricDiv).text();
 					
-					System.out.println(lyrica);
+//					System.out.println(lyrica);
 					return 1;
 //					System.out.println(lyric.select("div#main [margin-left:10px;margin-right:10px;]"));
 				}

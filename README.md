@@ -21,7 +21,7 @@ GP2014 Youtube Lyrics
   - Videos invalidos
   - Playlists
 
-### APIs
+### apis
 
 | N | API's                 | Func? | Linguagem  |
 |---|-----------------------|-------|------------|
@@ -101,3 +101,6 @@ Download da thumbnail
 vfEs4
 
 youtube-dl -citk --max-quality FORMAT --extract-audio --audio-format mp3 http://www.youtube.com/playlist?list=XXXXXXXXXXX
+
+### Atualização YouTube-dl
+De forma a manter o programa funcional, o utilizador tem de garantir a atualização do youtube-dl no sistema.
