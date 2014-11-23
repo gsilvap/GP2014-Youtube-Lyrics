@@ -19,7 +19,7 @@ public class AZLyrics implements LyricSite{
 	
 //	TODO Cleaning
 //	TODO remove prints and return lyrica
-	public int downloadLyric(String nameAuthor, String nameMusic, int debug) {
+	public String downloadLyric(String nameAuthor, String nameMusic, int debug) {
 		String urlSearch = URL + Utilities.changeStringToSearch(nameAuthor)+"+"+Utilities.changeStringToSearch(nameMusic);
 		if (debug == 1)System.out.println(urlSearch);
 		Document doc = Utilities.getDoc(urlSearch);
@@ -42,17 +42,17 @@ public class AZLyrics implements LyricSite{
 				if (urlOfLyric.contains(Utilities.changeStringToURL(nameMusic)) && urlOfLyric.contains(Utilities.changeStringToURL(nameAuthor)))
 				{
 //					System.out.println("Correspondencia a 100%");
-//					Document lyric = Utilities.getDoc(urlSearch);
-//					Utilities.sleep();
+					Document lyric = Utilities.getDoc(urlSearch);
+					Utilities.sleep();
 //					Elements aux = lyric.select("div");
-//					String lyrica = lyric.select(lyricDiv).text();
+					String lyrica = lyric.select(lyricDiv).text();
 					
-//					System.out.println(lyrica);
-					return 1;
+					System.out.println(lyrica);
+					return lyrica;
 //					System.out.println(lyric.select("div#main [margin-left:10px;margin-right:10px;]"));
 				}
 			}
 		}
-		return 0;
+		return null;
 	}
 }
