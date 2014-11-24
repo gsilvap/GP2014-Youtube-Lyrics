@@ -30,7 +30,8 @@ public class AZLyrics implements LyricSite{
 				String urlOfLyric = element.select("a").attr("href");
 				
 				try {
-					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".lyric"));
+					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".html"));
+					Utilities.sleep(2000);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
