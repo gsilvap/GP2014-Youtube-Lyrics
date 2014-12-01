@@ -13,6 +13,9 @@ import readAndValidateData.TextFile;
  */
 public class Main {
 
+	private String regex = "";
+	private String pattern = "";
+	
 	private final int THREADS = 5;
 
 	private int threadControl;
@@ -27,6 +30,10 @@ public class Main {
 	public static void main(String args[]) {
 		Main program = new Main();
 
+		for (int i = 0; i < args.length; i++) {
+			System.out.println(args[i]);
+		}
+		
 		// TODO Integrar com ficheiro e startup
 
 		program.threadsList = new ArrayList<Thread>();
@@ -40,7 +47,7 @@ public class Main {
 			}
 		});
 
-		program.run();
+		program.run(args);
 	}
 
 	/**
@@ -60,11 +67,10 @@ public class Main {
 	/**
 	 * executa o programa
 	 */
-	private void run() {
+	private void run(String args[]) {
 		threadControl = 0;
 		TextFile regexFile = new TextFile();
-		String regex = "";
-		String pattern = "";
+		
 		try {
 			regexFile.openTextFileToRead("regex");
 			regex = regexFile.readLine();
@@ -92,46 +98,69 @@ public class Main {
 		Utilities.deleteFilesByExtension(".part");
 		Utilities.deleteFilesByExtension(".jpg");
 		Utilities.deleteFilesByExtension(".mp4");
-		ArrayList<Video> links = populate();
+		
+		ArrayList<Video> links = new ArrayList<Video>();
+		
+		if (args != null)
+		{
+			for (int i = 0; i < args.length; i++) {
+				links.add(new Video(args[i]));
+//				System.out.println(args[i]);
+			}
+			
+//			links
+		}
+		else
+		{
+			links = populate();
+		}
+		
 		for (Video video : links) {
-//			System.out.println(Utilities.returnId(video.getUrl(), ""));
-			video.validate(regex, pattern);
-//			video.validate("", "");
-//			System.out.println("Validade: "+video.isValid()+" "+video.getUrl());
-			if (video.isValid()) {
-				// System.out.println("[N THREADS] --> " + threadControl);
-				// Download de varios links na máximo 5 em simultaneo
-				while (threadControl >= THREADS) {
-//					Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
-					this.timer(5);
-				}
+			downloadInformation(video);
+		}
+	}
+	
+	private void downloadInformation(Video video)
+	{
+//		System.out.println(Utilities.returnId(video.getUrl(), ""));
+		video.validate(regex, pattern);
+//		video.validate("", "");
+//		System.out.println("Validade: "+video.isValid()+" "+video.getUrl());
+		if (video.isValid()) {
+			// System.out.println("[N THREADS] --> " + threadControl);
+			// Download de varios links na máximo 5 em simultaneo
+			while (threadControl >= THREADS) {
+//				Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
+				this.timer(5);
+			}
 
-				addThread();
-				Thread t = new Thread(() ->
-				{
-//					Utilities.debug("[DOWNLOADING] [" + video.getId() + "] Metadata");
-//					video.downloadVideo();
-					video.downloadFilename();
+			addThread();
+			Thread t = new Thread(() ->
+			{
+//				Utilities.debug("[DOWNLOADING] [" + video.getId() + "] Metadata");
+//				video.downloadVideo();
+				video.downloadFilename();
+				if (video.getState() == Video.State.VALID) {
+					video.downloadTitle();
+//					Utilities.debug("[DOWNLOADING] [" + video.getId() + "] " + video.getTitle());
 					if (video.getState() == Video.State.VALID) {
-						video.downloadTitle();
-//						Utilities.debug("[DOWNLOADING] [" + video.getId() + "] " + video.getTitle());
-						if (video.getState() == Video.State.VALID) {
-							video.downloadVideo();
-							Utilities.debug("[TERMINATED ] [" + video.getId() + "] " + video.getTitle());
-						} else {
-							System.out.println("[ERROR] [" + video.getId() + "]  Link inacessivel Title");
-						}
+						video.downloadVideo();
+						Utilities.debug("[TERMINATED ] [" + video.getId() + "] " + video.getTitle());
 					} else {
-						System.out.println("[ERROR] [" + video.getId() + "]  Link inacessivel Filename");
+						System.out.println("[ERROR] [" + video.getId() + "]  Link inacessivel Title");
 					}
-					closeThread();
-				});
-				threadsList.add(t);
-				t.start();
-			} 
-//			else
-//				System.out.println("Video invalido");
-//			// Utilities.debug("[STATE] ["+video.getId()+"] "+video.getState());
+				} else {
+					System.out.println("[ERROR] [" + video.getId() + "]  Link inacessivel Filename");
+				}
+				closeThread();
+			});
+			threadsList.add(t);
+			t.start();
+		} 
+		else
+		{
+			System.out.println("Video invalido");
+			// Utilities.debug("[STATE] ["+video.getId()+"] "+video.getState());
 		}
 	}
 

@@ -67,22 +67,5 @@ public class Utilities {
 
 		}
 	}
-	
-	public static String returnId(String url, String pattern)
-	{
-		if (pattern.compareTo("") == 0) {
-			pattern = "(be/|v=|/v/|/embed/|/watch/)([\\w_-]{11})";
-		}
-		Pattern compiledPattern = Pattern.compile(pattern);
-		Matcher matcher = compiledPattern.matcher(url);
 
-		if (matcher.find()) {
-			String id = matcher.group();
-			//	    			.substring(id.length()-11, id.length());
-			id = id.substring(id.length() - 11, id.length());
-			return id;
-		}
-		else
-			return "";
-	}
 }
