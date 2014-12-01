@@ -55,4 +55,10 @@ public class AZLyrics implements LyricSite{
 		}
 		return null;
 	}
+
+	@Override
+	public String downloadLyric(String music, int debug) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
