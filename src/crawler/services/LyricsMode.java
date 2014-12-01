@@ -19,40 +19,37 @@ public class LyricsMode implements LyricSite {
 	
 	
 	public String downloadLyric(String music, int debug) {
-		HashMap<String, String> replaceList = new HashMap<String, String>();
-		replaceList.put("ft.", "feat");
-		replaceList.put("-", " ");
-		replaceList.put("instrumental", "");
-		replaceList.put("karaoke", "");
-		replaceList.put("version", "");
-		replaceList.put("w/", "");
-		replaceList.put("official", "");
-		replaceList.put("video", "");
-		replaceList.put("download", "");
-		replaceList.put("youtube", "");
-		replaceList.put("in the style of", "");
-		replaceList.put("hd", " ");
-		replaceList.put("hq", " ");
-		replaceList.put("with lyrics", "");
-		replaceList.put("lyrics", "");
-		replaceList.put("on screen", "");
-		replaceList.put("   ", " ");
-		replaceList.put("  ", " ");
+		HashMap<String, String> regexReplaceList = new HashMap<String, String>();
+
+		regexReplaceList.put("[\\]\\[(){},.;!?<>%+~<>*\"_-]", " ");
+		
+		regexReplaceList.put("ft\\.", "feat");
+
+		regexReplaceList.put("with lyric[s]*", "");
+		regexReplaceList.put("lyric[s]*", "");
+		regexReplaceList.put("instrumental", "");
+		regexReplaceList.put("karaoke", "");
+		regexReplaceList.put("version", "");
+		regexReplaceList.put("w\\/", "");
+		regexReplaceList.put("official", "");
+		regexReplaceList.put("video", "");
+		regexReplaceList.put("download", "");
+		regexReplaceList.put("youtube", "");
+		regexReplaceList.put("in the style of", "");
+		regexReplaceList.put("hd", " ");
+		regexReplaceList.put("hq", " ");
+		regexReplaceList.put("on screen", "");
+		
+		regexReplaceList.put("[ ]+", " ");
+		
 		
 		music = Utilities.unAccent(music).toLowerCase();
 
-		music = music.replaceAll("[\\]\\[(){},.;!?<>%+~<>*\"_]", "");
+		for (Map.Entry<String, String> element : regexReplaceList.entrySet()) {
+			music = music.replaceAll(element.getKey(), element.getValue());
+		}
+
 		
-		for (Map.Entry<String, String> element : replaceList.entrySet()) {
-			music = music.replace(element.getKey(), element.getValue());
-		}
-
-		String prevMusic = music;
-		while (!(music = music.replace("  ", " ")).equals(prevMusic)) {
-			prevMusic = music;
-			music = music.replace("  ", " ");
-		}
-
 		if (music.endsWith(" ")) {
 			music = music.substring(0, music.length() - 1);
 		}
@@ -100,11 +97,8 @@ public class LyricsMode implements LyricSite {
 					System.out.println("Titulo: "+songTitle);
 					System.out.println("OK");
 					return lyrica;
-				} else {
-
+				} else if(debug == 1)
 					System.out.println("Values:" + count + "+" + words.length + "+" + count / words.length);
-
-				}
 			}
 		}
 
