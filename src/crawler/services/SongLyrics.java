@@ -10,7 +10,7 @@ public class SongLyrics implements LyricSite {
 	}
 
 	@Override
-	public String downloadLyric(String music, int debug) {
+	public String downloadLyric(String music, boolean debug) {
 		// TODO Auto-generated method stub
 		return null;
 	}
