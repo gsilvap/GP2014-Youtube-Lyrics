@@ -9,6 +9,7 @@ import java.util.List;
 import crawler.services.AZLyrics;
 import crawler.services.LyricsMode;
 import crawler.services.Lyrics;
+import crawler.services.SongLyrics;
 
 public class Crawler {
 	/**
@@ -25,7 +26,8 @@ public class Crawler {
 		AZLyrics azlyric = new AZLyrics();
 		LyricsMode lyricsmode = new LyricsMode();
 		Lyrics lyrics = new Lyrics();
-
+		SongLyrics songlyrics = new SongLyrics();
+		
 //		Imprime todos os outputs para ficheiro
 		PrintStream out;
 		try {
@@ -68,7 +70,8 @@ public class Crawler {
 				"Foxtrot Uniform Charlie Kilo - Bloodhound gang lyrics", "Blink-182-I Miss You (Karaoke)", "Coldplay - The Scientist Karaoke", "Linkin Park - Castle of Glass karaoke");
 		
 		int count = 0;
-//		String result = lyricsmode.downloadLyric(musics.get(0), 1);
+		String result;
+//		 = lyricsmode.downloadLyric(musics.get(0), 1);
 //		System.out.println(result);
 //		List<Integer> array = new ArrayList<Integer>();
 		System.out.println(musics.size());
@@ -76,8 +79,10 @@ public class Crawler {
 //			for (int i = 0; i < musics.size(); i++) {
 //			String result = azlyric.downloadLyric(listAuthors.get(i), listMusic.get(i), 1);
 //			String result = azlyric.downloadLyric(musics.get(i), true);
-			String result = lyrics.downloadLyric(musics.get(i), true);
+//			String result = lyrics.downloadLyric(musics.get(i), true);
 //			String result = lyricsmode.downloadLyric(musics.get(i), true);
+//			result = lyricsmode.downloadLyric(musics.get(i), true);
+			result = songlyrics.downloadLyric(musics.get(i), false);
 //			array.add(result);
 //			count += result;   
 //			if(result!=null) count++;
