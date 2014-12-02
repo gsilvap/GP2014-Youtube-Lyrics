@@ -64,7 +64,7 @@ public class LyricsMode implements LyricSite {
 
 				//Conta o nr de palavras em comum entre o titulo e o url da pesquisa
 				for (String str : words)
-					if (urlOfLyric.contains(changeStringToURL(str)))
+					if (urlOfLyric.contains((str)))
 						count++;
 
 				//Verifica se existem pelo menos 70% das palavras em comum
@@ -97,16 +97,6 @@ public class LyricsMode implements LyricSite {
 		if (debug)
 			System.out.println("ERROR");
 		return null;
-	}
-
-	/**
-	 * @param msg
-	 * texto para converter para o estilo do url do site
-	 * retorna o texto convertido
-	 * 
-	 * */
-	public static String changeStringToURL(String msg) {
-		return msg.toLowerCase().replace("'", "").replace("& ", "").replace(" ", "_").replace("-", "_").replace(".", "");
 	}
 
 	/**
