@@ -21,10 +21,6 @@ public class Utilities {
 		}
 	}
 
-	public static String changeStringToURL(String msg) {
-		return msg.toLowerCase().replace("the ", "").replace(" ", "");
-	}
-
 	public static String changeStringToSearch(String msg) {
 		return msg.replace(" ", "+");
 	}

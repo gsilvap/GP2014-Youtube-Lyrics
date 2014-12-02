@@ -17,9 +17,9 @@ public class LyricsMode implements LyricSite {
 	private static String resultsDiv = "a.b.search_highlight";
 	//Localizacao da letra da musica
 	private static String lyricDiv = "p#lyrics_text.ui-annotatable";
-	//Localização do nome do artista
+	//Localizacao do nome do artista
 	private static String bandDiv = ".header-band-name";
-	//Localização do titulo da musica
+	//Localizacao do titulo da musica
 	private static String songDiv = ".header-song-name";
 
 	/**

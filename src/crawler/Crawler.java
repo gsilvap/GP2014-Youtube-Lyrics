@@ -8,6 +8,7 @@ import java.util.List;
 
 import crawler.services.AZLyrics;
 import crawler.services.LyricsMode;
+import crawler.services.Lyrics;
 
 public class Crawler {
 	/**
@@ -23,6 +24,7 @@ public class Crawler {
 	private void run() {
 		AZLyrics azlyric = new AZLyrics();
 		LyricsMode lyricsmode = new LyricsMode();
+		Lyrics lyrics = new Lyrics();
 
 //		Imprime todos os outputs para ficheiro
 		PrintStream out;
@@ -70,12 +72,15 @@ public class Crawler {
 //		System.out.println(result);
 //		List<Integer> array = new ArrayList<Integer>();
 		System.out.println(musics.size());
-		for (int i = 0; i < musics.size(); i++) {
+		for (int i = 0; i < 1; i++) {
+//			for (int i = 0; i < musics.size(); i++) {
 //			String result = azlyric.downloadLyric(listAuthors.get(i), listMusic.get(i), 1);
-			String result = lyricsmode.downloadLyric(musics.get(i), true);
+//			String result = azlyric.downloadLyric(musics.get(i), true);
+			String result = lyrics.downloadLyric(musics.get(i), true);
+//			String result = lyricsmode.downloadLyric(musics.get(i), true);
 //			array.add(result);
-//			count += result;
-			if(result!=null) count++;
+//			count += result;   
+//			if(result!=null) count++;
 		}
 		
 		System.out.println(count+"/"+musics.size());

@@ -82,8 +82,6 @@ public class Main {
 			regex = "";
 			pattern = "";
 		}
-
-		
 //		String regexa = "(https?://)?" + "(www\\.)?" + "(youtu\\.be/|youtube\\.com/)?" + "(" + "(.+/)?" + "(watch" + "(\\?v=|.+&v=)" + ")?" + "(v=)?" + ")" + "([\\w_-]{11})" + "(&.+)?" + "(\\?list=([\\w_-]{13}))?" + "(\\?t=[0-9]*s)?" + "(\\\\?.+)?";
 //		System.out.println(regex);
 //		System.out.println(regexa);
@@ -122,6 +120,7 @@ public class Main {
 	
 	private void downloadInformation(Video video)
 	{
+//		TODO Clean
 //		System.out.println(Utilities.returnId(video.getUrl(), ""));
 		video.validate(regex, pattern);
 //		video.validate("", "");
