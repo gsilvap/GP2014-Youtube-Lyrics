@@ -148,10 +148,4 @@ public class LyricsMode implements LyricSite {
 		return music;
 	}
 
-	//Metodo para remover
-	@Override
-	public String downloadLyric(String nameAuthor, String nameMusic, int debug) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

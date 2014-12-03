@@ -8,7 +8,6 @@ import java.util.List;
 
 import crawler.services.AZLyrics;
 import crawler.services.LyricsMode;
-import crawler.services.Lyrics;
 import crawler.services.SongLyrics;
 
 public class Crawler {
@@ -25,7 +24,7 @@ public class Crawler {
 	private void run() {
 		AZLyrics azlyric = new AZLyrics();
 		LyricsMode lyricsmode = new LyricsMode();
-		Lyrics lyrics = new Lyrics();
+//		Lyrics lyrics = new Lyrics();
 		SongLyrics songlyrics = new SongLyrics();
 		
 //		Imprime todos os outputs para ficheiro
