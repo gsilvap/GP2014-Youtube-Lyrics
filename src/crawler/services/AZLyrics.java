@@ -9,7 +9,7 @@ import java.util.Map;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 
 import crawler.Utilities;
 
@@ -31,13 +31,13 @@ public class AZLyrics implements LyricSite{
 			for (Element element : lyrics) {
 				String urlOfLyric = element.select("a").attr("href");
 				
-				try {
+				/*try {
 					FileUtils.copyURLToFile(new URL(urlOfLyric), new File(nameAuthor+" "+nameMusic+".html"));
 					Utilities.sleep(2000);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 				
 				if (debug == 1)System.out.println(urlOfLyric);
 				
