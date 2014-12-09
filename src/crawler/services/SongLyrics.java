@@ -21,7 +21,12 @@ public class SongLyrics implements LyricSite {
 	// Localização do nome do artista e titulo da musica
 	private static String infoDiv = "div.pagetitle";
 
-	@Override
+	/**
+	 * @param song 
+	 * Recebe objeto song que contem o titulo recolhido do youtube
+	 * @param debug
+	 * Recebe true para ver prints de teste 
+	 */
 	public Song downloadLyric(Song song, boolean debug) {
 		String urlSearch, urlOfLyric;
 		String bandName, songTitle, lyrica;
@@ -36,13 +41,12 @@ public class SongLyrics implements LyricSite {
 		// Criacao do url de pesquisa
 		urlSearch = URL + Utilities.changeStringToSearch(music);
 
-		if (!debug)
+		if (debug)
 			System.out.println(urlSearch);
 
 		doc = Utilities.getDoc(urlSearch);
 
-		// Remocao da preposicao "the" que se torna irrelevante para a procura
-		// nos resultados
+		// Remocao da preposicao "the" que se torna irrelevante para a procura nos resultados
 		music = music.toLowerCase().replace("the ", "");
 
 		words = music.split(" ");
@@ -58,8 +62,7 @@ public class SongLyrics implements LyricSite {
 				if (debug)
 					System.out.println(urlOfLyric);
 
-				// Conta o nr de palavras em comum entre o titulo e o url da
-				// pesquisa
+				// Conta o nr de palavras em comum entre o titulo e o url da pesquisa
 				for (String str : words)
 					if (urlOfLyric.replace("-lyrics", "").contains(str))
 						count++;
@@ -70,19 +73,23 @@ public class SongLyrics implements LyricSite {
 					lyric = Utilities.getDoc(urlOfLyric);
 					Utilities.sleep();
 
-					// Seleciona o nome do artista
 					bandName = lyric.select(infoDiv).select("h1").text();
-
+					
+					// Seleciona o titulo da musica
 					songTitle = (bandName.split(" - ")[1]).replace(" Lyrics", "");
+					
+					// Seleciona o nome do artista
 					bandName = bandName.split(" - ")[0];
 
 					// Seleciona a letra da musica
 					lyrica = (Utilities.br2nl(lyric.select(lyricDiv).toString())).replace("\n ", "\n");
 
-					System.out.println("Banda: " + bandName);
-					System.out.println("Titulo: " + songTitle);
-					// System.out.println(lyrica);
-					System.out.println("OK");
+					if (debug) {
+						System.out.println("Banda: " + bandName);
+						System.out.println("Titulo: " + songTitle);
+						System.out.println(lyrica);
+						System.out.println("OK");
+					}
 
 					song.setTitle(songTitle);
 					song.setArtistName(bandName);
@@ -95,7 +102,8 @@ public class SongLyrics implements LyricSite {
 		}
 
 		// Caso nao encontre a letra da musica retorna null
-		System.out.println("ERROR");
+		if (debug)
+			System.out.println("ERROR");
 		return null;
 	}
 
@@ -133,25 +141,13 @@ public class SongLyrics implements LyricSite {
 		// Remocao da acentuacao
 		music = Utilities.unAccent(music).toLowerCase();
 
-		// Efetua a limpeza das seuencias irrelevantes segundo o
-		// regexReplaceList
+		// Efetua a limpeza das sequencias irrelevantes segundo o regexReplaceList
 		for (Map.Entry<String, String> element : regexReplaceList.entrySet())
 			music = music.replaceAll(element.getKey(), element.getValue());
 
-		// Limpa a existencia de espacos no fim do titulo a usar na pesquisa
-		if (music.endsWith(" "))
-			music = music.substring(0, music.length() - 1);
-
-		// Limpa a existencia de espacos no inicio do titulo a usar na pesquisa
-		if (music.startsWith(" "))
-			music = music.substring(1, music.length());
-
+		//Limpa a existencia de espacos no inicio ou no fim do titulo a usar na pesquisa
+		music = music.trim();
+		
 		return music;
 	}
-
-	// FIXME: REMOVER
-	public String downloadLyric(String music, boolean debug) {
-		return null;
-	}
-
 }

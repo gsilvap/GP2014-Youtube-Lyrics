@@ -208,11 +208,4 @@ public class AZLyrics implements LyricSite{
 
 		return music;
 	}
-
-	// FIXME: Remove
-	@Override
-	public String downloadLyric(String music, boolean debug) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
