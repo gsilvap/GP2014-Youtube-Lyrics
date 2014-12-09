@@ -4,11 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import crawler.services.AZLyrics;
-import crawler.services.LyricsMode;
 import crawler.services.Lyrics;
+import crawler.services.LyricsMania;
+import crawler.services.LyricsMode;
 import crawler.services.SongLyrics;
 
 public class Crawler {
@@ -27,6 +29,7 @@ public class Crawler {
 		LyricsMode lyricsmode = new LyricsMode();
 		Lyrics lyrics = new Lyrics();
 		SongLyrics songlyrics = new SongLyrics();
+		LyricsMania lyricsMania = new LyricsMania();
 		
 //		Imprime todos os outputs para ficheiro
 		PrintStream out;
@@ -75,20 +78,23 @@ public class Crawler {
 //		System.out.println(result);
 //		List<Integer> array = new ArrayList<Integer>();
 		System.out.println(musics.size());
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < musics.size(); i++) {
 //			for (int i = 0; i < musics.size(); i++) {
 //			String result = azlyric.downloadLyric(listAuthors.get(i), listMusic.get(i), 1);
 //			String result = azlyric.downloadLyric(musics.get(i), true);
 //			String result = lyrics.downloadLyric(musics.get(i), true);
 //			String result = lyricsmode.downloadLyric(musics.get(i), true);
 //			result = lyricsmode.downloadLyric(musics.get(i), true);
-			result = songlyrics.downloadLyric(musics.get(i), false);
+//			result = songlyrics.downloadLyric(musics.get(i), false);
+			result = lyricsMania.downloadLyric(musics.get(i), true);
 //			array.add(result);
 //			count += result;   
-//			if(result!=null) count++;
+			if(result!=null) count++;
 		}
 		
 		System.out.println(count+"/"+musics.size());
+		
+		System.out.println(new Date());
 		
 		System.out.println("DEBUG");
 //		for (int i = 0; i < array.size(); i++) {
