@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import crawler.Utilities;
+import edu.dei.gp.jpa.Song;
 
 public class LyricsMode implements LyricSite {
 
@@ -28,15 +29,17 @@ public class LyricsMode implements LyricSite {
 	 * @param debug
 	 * Recebe 1 para ver prints de teste 
 	 */
-	public String downloadLyric(String music, boolean debug) {
+	public Song downloadLyric(Song song, boolean debug){
+//	public String downloadLyric(String music, boolean debug) {
 		String urlSearch, urlOfLyric;
 		String bandName, songTitle, lyrica;
 		double count = 0;
 		Elements lyrics;
 		Document doc, lyric;
 		String[] words;
+		String music;
 
-		music = cleanString(music);
+		music = cleanString(song.getTitle());
 		
 		//Criacao do url de pesquisa
 		urlSearch = URL + Utilities.changeStringToSearch(music);
@@ -86,8 +89,12 @@ public class LyricsMode implements LyricSite {
 					System.out.println("Titulo: " + songTitle);
 					//System.out.println(lyrica);
 					System.out.println("OK");
-
-					return lyrica;
+				
+					song.setTitle(songTitle);
+					song.setArtistName(bandName);
+					song.setLyric(lyrica);
+					
+					return song;
 				} else if (debug)
 					System.out.println("Values:" + count + "+" + words.length + "+" + count / words.length);
 			}
@@ -146,6 +153,14 @@ public class LyricsMode implements LyricSite {
 			music = music.substring(1, music.length());
 
 		return music;
+	}
+
+	
+	// FIXME: REMOVER
+	@Override
+	public String downloadLyric(String music, boolean debug) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
