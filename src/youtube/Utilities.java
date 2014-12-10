@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Utilities {
 
 	public static boolean DEBUG = true;
+	public static String DIRECTORY = "resources";
 
 	/**
 	 * Executa as chamadas ao youtube-dl
@@ -29,9 +30,8 @@ public class Utilities {
 		String s;
 		Process p;
 		try {
-			File dir = new File(id);
-			dir.mkdir();
-			p = Runtime.getRuntime().exec(cmd, null, new File(id));
+			new File(DIRECTORY+"\\"+id).mkdirs();
+			p = Runtime.getRuntime().exec(cmd, null, new File(DIRECTORY+"\\"+id));
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = br.readLine()) != null) {
 				if (DEBUG) debug("[" + id + "] " + s);
