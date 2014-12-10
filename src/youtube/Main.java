@@ -113,10 +113,10 @@ public class Main {
 			links = populate();
 		}
 		
-//		for (Video video : links) {
-//			downloadInformation(video);
-			downloadInformation(links.get(0));
-//		}
+		for (Video video : links) {
+			downloadInformation(video);
+//			downloadInformation(links.get(0));
+		}
 	}
 	
 	private void downloadInformation(Video video)
