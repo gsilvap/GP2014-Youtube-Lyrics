@@ -99,7 +99,7 @@ public class Main {
 		
 		ArrayList<Video> links = new ArrayList<Video>();
 		
-		if (args != null)
+		if (args != null && args.length != 0)
 		{
 			for (int i = 0; i < args.length; i++) {
 				links.add(new Video(args[i]));
@@ -113,9 +113,10 @@ public class Main {
 			links = populate();
 		}
 		
-		for (Video video : links) {
-			downloadInformation(video);
-		}
+//		for (Video video : links) {
+//			downloadInformation(video);
+			downloadInformation(links.get(0));
+//		}
 	}
 	
 	private void downloadInformation(Video video)
@@ -170,6 +171,7 @@ public class Main {
 	 */
 	private ArrayList<Video> populate() {
 		ArrayList<Video> links = new ArrayList<Video>();
+		links.add(new Video("https://www.youtube.com/watch?v=xlEQnZdlaeE"));
 		links.add(new Video("http://www.youtube.com/v/i_GFalTRHDA"));
 		links.add(new Video("https://www.youtube.com/watch?v=i-GFalTRHDA&feature=related"));
 		links.add(new Video("http://www.youtube.com/embed/v=iwGFalTRHDA"));

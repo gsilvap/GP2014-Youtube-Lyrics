@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Class para efetuar o download dos videos 
@@ -31,7 +29,9 @@ public class Utilities {
 		String s;
 		Process p;
 		try {
-			p = Runtime.getRuntime().exec(cmd);
+			File dir = new File(id);
+			dir.mkdir();
+			p = Runtime.getRuntime().exec(cmd, null, new File(id));
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = br.readLine()) != null) {
 				if (DEBUG) debug("[" + id + "] " + s);
