@@ -34,8 +34,6 @@ public class Main {
 			System.out.println(args[i]);
 		}
 		
-		// TODO Integrar com ficheiro e startup
-
 		program.threadsList = new ArrayList<Thread>();
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
@@ -82,16 +80,6 @@ public class Main {
 			regex = "";
 			pattern = "";
 		}
-//		String regexa = "(https?://)?" + "(www\\.)?" + "(youtu\\.be/|youtube\\.com/)?" + "(" + "(.+/)?" + "(watch" + "(\\?v=|.+&v=)" + ")?" + "(v=)?" + ")" + "([\\w_-]{11})" + "(&.+)?" + "(\\?list=([\\w_-]{13}))?" + "(\\?t=[0-9]*s)?" + "(\\\\?.+)?";
-//		System.out.println(regex);
-//		System.out.println(regexa);
-//		
-//		String	patterna = "(be/|v=|/v/|/embed/|/watch/)([\\w_-]{11})";
-//		System.out.println(pattern);
-//		System.out.println(patterna);
-//		
-//		 System.out.println("'"+regex+"'");
-//		 System.out.println("'"+pattern+"'");
 
 		Utilities.deleteFilesByExtension(".part");
 		Utilities.deleteFilesByExtension(".jpg");
@@ -103,10 +91,7 @@ public class Main {
 		{
 			for (int i = 0; i < args.length; i++) {
 				links.add(new Video(args[i]));
-//				System.out.println(args[i]);
 			}
-			
-//			links
 		}
 		else
 		{
@@ -120,28 +105,24 @@ public class Main {
 	
 	private void downloadInformation(Video video)
 	{
-//		TODO Clean
-//		System.out.println(Utilities.returnId(video.getUrl(), ""));
 		video.validate(regex, pattern);
-//		video.validate("", "");
 //		System.out.println("Validade: "+video.isValid()+" "+video.getUrl());
 		if (video.isValid()) {
 			// System.out.println("[N THREADS] --> " + threadControl);
 			// Download de varios links na máximo 5 em simultaneo
 			while (threadControl >= THREADS) {
-//				Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
+				Utilities.debug("[BUZY] Todos os slots de download estao ocupados (proxima tentativa 5s)");
 				this.timer(5);
 			}
 
 			addThread();
 			Thread t = new Thread(() ->
 			{
-//				Utilities.debug("[DOWNLOADING] [" + video.getId() + "] Metadata");
-//				video.downloadVideo();
+				Utilities.debug("[DOWNLOADING] [" + video.getId() + "] Metadata");
 				video.downloadFilename();
 				if (video.getState() == Video.State.VALID) {
 					video.downloadTitle();
-//					Utilities.debug("[DOWNLOADING] [" + video.getId() + "] " + video.getTitle());
+					Utilities.debug("[DOWNLOADING] [" + video.getId() + "] " + video.getTitle());
 					if (video.getState() == Video.State.VALID) {
 						video.downloadVideo();
 						Utilities.debug("[TERMINATED ] [" + video.getId() + "] " + video.getTitle());
@@ -301,8 +282,7 @@ public class Main {
 		links.add(new Video("https://www.youtube.com/v/MvYJcJ7w8F4%26ap=%2526fmt=22"));
 		links.add(new Video("https://www.youtube.com/v/siu1f5bVf2I?loop=1"));
 		links.add(new Video("https://www.youtube.com/watch?v=bbPBPZUN92U8&feature=player_embedded"));
-//		links.add(new Video("https://www.youtube.com/watch?feature=player_embedded&v=ESbqltvXKqk#!"));
-		
+
 		return links;
 	}
 
