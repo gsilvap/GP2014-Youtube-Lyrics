@@ -1,6 +1,7 @@
 package crawler.services;
 
+import edu.dei.gp.jpa.Song;
+
 public interface LyricSite {
-	public String downloadLyric(String nameAuthor, String nameMusic, int debug);
-	public String downloadLyric(String music, boolean debug);
+	public Song downloadLyric(Song song, boolean debug);
 }

@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import crawler.Utilities;
+import edu.dei.gp.jpa.Song;
 
 public class LyricsMania implements LyricSite {
 
@@ -23,111 +24,92 @@ public class LyricsMania implements LyricSite {
 	private static String songDiv = "h2";
 
 	/**
-	 * @param music 
-	 * Recebe titulo da musica recolhido do youtube
+	 * @param song 
+	 * Recebe objeto song que contem o titulo recolhido do youtube
 	 * @param debug
-	 * Recebe 1 para ver prints de teste 
+	 * Recebe true para ver prints de teste 
 	 */
-	public String downloadLyric(String music, boolean debug) {
+	public Song downloadLyric(Song song, boolean debug) {
 		String urlSearch, urlOfLyric;
 		String bandName, songTitle, lyrica;
 		double count = 0;
 		Elements lyrics;
 		Document doc, lyric;
 		String[] words;
+		String music;
 
-		music = cleanString(music);
-		
+		music = cleanString(song.getTitle());
+
 		//Criacao do url de pesquisa
-		urlSearch = URL + changeStringToSearch(music);
+		urlSearch = URL + Utilities.changeStringToSearch(music);
 
 		if (debug)
 			System.out.println(urlSearch);
 
 		doc = Utilities.getDoc(urlSearch);
-//		System.out.println(doc);
-		
+
 		//Remocao da preposicao "the" que se torna irrelevante para a procura nos resultados
 		music = music.toLowerCase().replace("the ", "");
 
 		words = music.split(" ");
-		
-//		System.out.println(doc);
-		lyrics = doc.select(resultsDiv);
-//		for (Element string : lyrics) {
-//			System.out.println(string);
-//		}
-		
-//		System.out.println(lyrics);
-		
+
 		if (doc != null) {
 			lyrics = doc.select(resultsDiv);
-//			System.out.println(lyrics);
+
 			//Faz a selecao do possivel resultado para a pesquisa
 			for (Element element : lyrics) {
 				count = 0;
-				String urlOfLyricShort = element.select("a").attr("href");
-				urlOfLyric = "http://www.lyricsmania.com" + urlOfLyricShort;
-//				if (debug)
-//					System.out.println(" "+urlOfLyric);
+				urlOfLyric = element.select("a").attr("href");
+				urlOfLyric = "http://www.lyricsmania.com" + urlOfLyric;
+				
+				if (debug)
+					System.out.println(urlOfLyric);
 
-//				//Conta o nr de palavras em comum entre o titulo e o url da pesquisa
+				//Conta o nr de palavras em comum entre o titulo e o url da pesquisa
 				for (String str : words)
-					if (urlOfLyricShort.contains(changeStringToURL(str)))
+					if (urlOfLyric.contains(str))
 						count++;
 
-//				//Verifica se existem pelo menos 70% das palavras em comum
+				//Verifica se existem pelo menos 70% das palavras em comum
 				if ((count / words.length) > 0.70) {
 
 					lyric = Utilities.getDoc(urlOfLyric);
-//					System.out.println(lyric);
-					System.out.println("-> "+urlOfLyric);
 					Utilities.sleep();
 
-//					//Seleciona o nome do artista
+					//Seleciona o nome do artista
 					bandName = lyric.select(bandDiv).text();
-//					
-//					//Seleciona o titulo da musica
+									
+					//Seleciona o titulo da musica
 					songTitle = lyric.select(songDiv).text().replace(" lyrics", "");
-					
+
+					// FIXME:Explicar para que e que isto serve
 					String toReplace = lyric.select("div.lyrics-body strong").text();
 					String toReplace2 = lyric.select("div.lyrics-body h5").text();
-					
-//					//Seleciona a letra da musica
-					lyrica = (Utilities.br2nl(lyric.select(lyricDiv).toString().trim().replaceFirst(toReplace, "").replaceFirst(toReplace2, ""))).trim().replace("\n ", "\n");
 
-					System.out.println("Banda: " + bandName);
-					System.out.println("Titulo: " + songTitle);
-					System.out.println(lyrica);
-					System.out.println("OK");
-//
-					return lyrica;
-//					return urlOfLyric;
+					//Seleciona a letra da musica
+					lyrica = (Utilities.br2nl(lyric.select(lyricDiv).toString().trim().replaceFirst(toReplace, "").replaceFirst(toReplace2, ""))).trim().replaceAll("\n[ ]*\n ", "\n");
+
+					if (debug) {
+						System.out.println("Banda: " + bandName);
+						System.out.println("Titulo: " + songTitle);
+						System.out.println(lyrica);
+						System.out.println("OK");
+					}
+
+					song.setTitle(songTitle);
+					song.setArtistName(bandName);
+					song.setLyric(lyrica);
+
+					return song;
 				} else if (debug)
-				{
-//					System.out.println("Values:" + count + "+" + words.length + "+" + count / words.length);
-				}
+					System.out.println("Values:" + count + "+" + words.length + "+" + count / words.length);
 			}
 		}
-//		
-//		//Caso nao encontre a letra da musica retorna null
-//		if (debug)
-//			System.out.println("ERROR");
-		return null;
-	}
-	
-	public static String changeStringToSearch(String msg) {
-		return msg.replace(" ", "+");
-	}
 
-	/**
-	 * @param msg
-	 * texto para converter para o estilo do url do site
-	 * retorna o texto convertido
-	 * 
-	 * */
-	public static String changeStringToURL(String msg) {
-		return msg.toLowerCase().replace("'", "").replace("& ", "").replace(" ", "_").replace("-", "_").replace(".", "");
+		//Caso nao encontre a letra da musica retorna null
+		if (debug)
+			System.out.println("ERROR");
+		return null;
 	}
 
 	/**
@@ -137,7 +119,7 @@ public class LyricsMania implements LyricSite {
 	 * 
 	 * */
 	public static String cleanString(String music) {
-		
+
 		//lista de possiveis sequencias que tem de ser removidas
 		HashMap<String, String> regexReplaceList = new HashMap<String, String>();
 
@@ -164,25 +146,13 @@ public class LyricsMania implements LyricSite {
 		//Remocao da acentuacao
 		music = Utilities.unAccent(music).toLowerCase();
 
-		//Efetua a limpeza das seuencias irrelevantes segundo o regexReplaceList
+		//Efetua a limpeza das sequencias irrelevantes segundo o regexReplaceList
 		for (Map.Entry<String, String> element : regexReplaceList.entrySet())
 			music = music.replaceAll(element.getKey(), element.getValue());
 
-		//Limpa a existencia de espacos no fim do titulo a usar na pesquisa
-		if (music.endsWith(" "))
-			music = music.substring(0, music.length() - 1);
-
-		//Limpa a existencia de espacos no inicio do titulo a usar na pesquisa
-		if (music.startsWith(" "))
-			music = music.substring(1, music.length());
+		//Limpa a existencia de espacos no inicio ou no fim do titulo a usar na pesquisa
+		music = music.trim();
 
 		return music;
-	}
-
-	//Metodo para remover
-	@Override
-	public String downloadLyric(String nameAuthor, String nameMusic, int debug) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
