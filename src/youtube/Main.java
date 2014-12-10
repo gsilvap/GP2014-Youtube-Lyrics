@@ -11,7 +11,7 @@ import readAndValidateData.TextFile;
  * @author Celso Rafael Clara Mendes 2009109378
  * @author Goncalo Silva Pereira 2009111643
  */
-public class Main {
+public class Main implements Runnable {
 
 	private String regex = "";
 	private String pattern = "";
@@ -297,6 +297,12 @@ public class Main {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

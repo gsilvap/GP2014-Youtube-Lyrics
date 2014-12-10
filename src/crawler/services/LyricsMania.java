@@ -82,7 +82,7 @@ public class LyricsMania implements LyricSite {
 					//Seleciona o titulo da musica
 					songTitle = lyric.select(songDiv).text().replace(" lyrics", "");
 
-					// FIXME:Explicar para que e que isto serve
+					//Informacao extra a remover da div
 					String toReplace = lyric.select("div.lyrics-body strong").text();
 					String toReplace2 = lyric.select("div.lyrics-body h5").text();
 
