@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Class para efetuar o download dos videos 
@@ -16,6 +14,7 @@ import java.util.regex.Pattern;
 public class Utilities {
 
 	public static boolean DEBUG = true;
+	public static String DIRECTORY = "resources";
 
 	/**
 	 * Executa as chamadas ao youtube-dl
@@ -31,7 +30,8 @@ public class Utilities {
 		String s;
 		Process p;
 		try {
-			p = Runtime.getRuntime().exec(cmd);
+			new File(DIRECTORY+"\\"+id).mkdirs();
+			p = Runtime.getRuntime().exec(cmd, null, new File(DIRECTORY+"\\"+id));
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = br.readLine()) != null) {
 				if (DEBUG) debug("[" + id + "] " + s);
