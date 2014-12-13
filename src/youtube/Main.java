@@ -81,9 +81,9 @@ public class Main implements Runnable {
 			pattern = "";
 		}
 
-		Utilities.deleteFilesByExtension(".part");
-		Utilities.deleteFilesByExtension(".jpg");
-		Utilities.deleteFilesByExtension(".mp4");
+//		Utilities.deleteFilesByExtension(".part");
+//		Utilities.deleteFilesByExtension(".jpg");
+//		Utilities.deleteFilesByExtension(".mp4");
 		
 		ArrayList<Video> links = new ArrayList<Video>();
 		
@@ -103,7 +103,7 @@ public class Main implements Runnable {
 		}
 	}
 	
-	private void downloadInformation(Video video)
+	public void downloadInformation(Video video)
 	{
 		video.validate(regex, pattern);
 //		System.out.println("Validade: "+video.isValid()+" "+video.getUrl());
