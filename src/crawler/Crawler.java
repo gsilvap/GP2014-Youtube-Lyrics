@@ -51,29 +51,29 @@ public class Crawler {
 				"Karaoke - The Cure - Boys don't cry", "The BloodHound Gang - The Bad Touch Lyrics", "The Offspring - Pretty Fly for a White Guy Lyrics", 
 				"Foxtrot Uniform Charlie Kilo - Bloodhound gang lyrics", "Blink-182-I Miss You (Karaoke)", "Coldplay - The Scientist Karaoke", "Linkin Park - Castle of Glass karaoke");
 		
-//		LyricsMode lyricsmode = new LyricsMode();
+		LyricsMode lyricsmode = new LyricsMode();
 //		SongLyrics songlyrics = new SongLyrics();
-		LyricsMania lyricsMania = new LyricsMania();
+//		LyricsMania lyricsMania = new LyricsMania();
 		int count = 0;
 		Song result;
 		Song song = new Song();
 		
 //		Imprime todos os outputs para ficheiro
-		PrintStream out;
-		try {
-			out = new PrintStream(new FileOutputStream("output.txt"));
-			System.setOut(out);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		PrintStream out;
+//		try {
+//			out = new PrintStream(new FileOutputStream("output.txt"));
+//			System.setOut(out);
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		System.out.println(musics.size());
 		for (int i = 0; i < musics.size(); i++) {
 			song.setTitle(musics.get(i));
-//			result = lyricsmode.downloadLyric(song, true);
-//			result = songlyrics.downloadLyric(song, true);
-			result = lyricsMania.downloadLyric(song, true);
+			result = lyricsmode.downloadLyric(song, false);
+//			result = songlyrics.downloadLyric(song, false);
+//			result = lyricsMania.downloadLyric(song, false);
 			if(result!=null) count++;
 		}
 		
